@@ -1,4 +1,4 @@
-/* Cursor de recursos humanos - Ignacio Vellido Expósito */
+/* Cursor de marketing -- Francisco José Cotán López */
 
 -- Listado de los nombres de las campañas junto con el nomre del producto que promocionan  --
 
@@ -20,7 +20,7 @@ BEGIN
   FETCH nombres INTO NombreCampania, NombreProducto;
 
   DBMS_OUTPUT.PUT_LINE('Pareja de nombres');
-  
+
   WHILE nombres%found LOOP
     DBMS_OUTPUT.PUT_LINE('Nombre de la campaña: ' || NombreCampania);
     DBMS_OUTPUT.PUT_LINE('Nombre del producto: ' || NombreProducto);
