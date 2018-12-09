@@ -1,0 +1,10 @@
+INSERT INTO Entidad VALUES ('0','A');
+INSERT INTO Entidad VALUES ('1','B');
+INSERT INTO Entidad VALUES ('2','C');
+INSERT INTO Entidad VALUES ('3','D');
+INSERT INTO Entidad VALUES ('4','E');
+INSERT INTO Entidad VALUES ('5','F');
+INSERT INTO Entidad VALUES ('6','G');
+INSERT INTO Entidad VALUES ('7','H');
+INSERT INTO Entidad VALUES ('8','I');
+INSERT INTO Entidad VALUES ('9','J');
