@@ -9,14 +9,7 @@ const operacionesComunes = require('../../Comun/js/operaciones');
 */
 
 var consultarCampania = (identificador, callback) => {		// Otra manera de declarar funciones
-	var con = mysql.createConnection({
-		host: 		"localhost",
-		user: 		"iscoct",
-		password: 	"Vamos a aprobar DDSI de 3",
-		database:	"aux"
-	});
-
-	con.connect(function(err) {
+	operacionesComunes.conectarse(function(err, con) {
 		if(err)
 			console.log("Hubo un error al conectarse con la BD");
 
@@ -73,29 +66,17 @@ eliminarCampania(3);
 */
 
 var crearCampania = (nombre, tipo, publicoObjetivo) => {
-	var con = mysql.createConnection({
-		host: 		"localhost",
-		user: 		"iscoct",
-		password: 	"Vamos a aprobar DDSI de 3",
-		database:	"aux"
-	});
-	
-	con.connect(function(err) {
+	operacionesComunes.conectarse(function(err, con) {
 		if(err)
 			console.log("Hubo un error al conectarse con la BD");
 		
-		let sql = "select MAX(CodEnt) from Entidad";
-		
-		con.query(sql, function(err, result) {
+		operacionesComunes.tomarMaximo(con, "CodEnt", "Entidad", (err, maximo) => {
 			if(err)
 				console.log("Hubo un error al hacer la consulta del máximo iden Entidad");
 			else
 				console.log("Realizada la consulta del máximo iden de la Entidad");
 			
-			// Tomamos el máximo lo transformamos en entero y le sumamos 1, 0 si no las tablas estaban vacías
-			
-			let maximo = Number(result[0]['MAX(CodEnt)']);
-			let identificador = (maximo != null) ? Number(result[0]['MAX(CodEnt)']) + 1 : 0;
+			let identificador = maximo + 1;
 			let campos = ["CodEnt", "Nombre"];
 			let valores = [identificador, nombre];
 			
@@ -110,17 +91,6 @@ var crearCampania = (nombre, tipo, publicoObjetivo) => {
 		});
 	});
 }
-
-/*
-	...datos == Array de datos
-	
-	Pero para llamar a la función se puede hacer como
-		crearComparacionCompetidor(x, y, z, ...);
-	
-	
-var crearComparacionCompetidor = (...datos) => {
-
-*/
 
 /*
 	Prueba de que crearCampania funciona
@@ -151,39 +121,30 @@ modificarCampania(campos, valores, camposCondiciones, condiciones);
 */
 
 var crearInfProdComp = (nombre, precio, rendimiento, informe, idProducto) => {
-	var con = mysql.createConnection({
-		host: 		"localhost",
-		user: 		"iscoct",
-		password: 	"Vamos a aprobar DDSI de 3",
-		database:	"aux"
-	});
-	
-	con.connect(function(err) {
+	operacionesComunes.conectarse(function(err, con) {
 		if(err)
 			console.log("Hubo un error al intentar conectarse a la BD en crearInfProdComp");
-			
-		var sql = "select MAX(CodProdComp) from ProductoCompetidor;";
 		
-		con.query(sql, (err, result) => {
+		operacionesComunes.tomarMaximo(con, "CodProdComp", "ProductoCompetidor", (err, maximo) => {
 			if(err)
 				console.log("Hubo un error al consultar el máximo de CodProdComo en ProductoCompetidor");
 				
-			let maximo = result[0]['MAX(CodProdComp)'];
-			let idNuevo = Number(maximo) + 1;
+			let idNuevo = maximo + 1;
 			let valores = [idNuevo, precio, nombre, rendimiento];
 			let campos = ["CodProdComp", "Precio", "Nombre", "Rendimiento"];
 			
 			operacionesComunes.insertarTupla("ProductoCompetidor", campos, valores);
 			
-			sql = "select MAX(CodComp) from Compara;";
-			
-			con.query(sql, (err, result) => {
+			operacionesComunes.tomarMaximo(con, "CodComp", "Compara", (err, maximo) => {
 				if(err)
 					console.log("Hubo un error al consultar el máximo de CodComp en Compara");
 					
-				maximo = result[0]['MAX(CodComp)'];
-				let idNuevoComp = Number(maximo) + 1;
+				let idNuevoComp = maximo + 1;
 				campos = ["CodProdComp", "CodProd", "CodComp", "Informe"];
+				
+				if(informe = '')
+					informe = "null";
+					
 				valores = [idNuevo, idProducto, idNuevoComp, informe];
 
 				operacionesComunes.insertarTupla("Compara", campos, valores);

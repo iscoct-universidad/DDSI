@@ -32,7 +32,6 @@ var server = http.createServer((req, res) => {
 			
 			respuesta += "Operación realizada con éxito";
 			
-			
 			res.writeHead(200, {"Content-Type": "text/html"});
 			res.write(respuesta);
 			res.end();
@@ -43,7 +42,6 @@ var server = http.createServer((req, res) => {
 			operaciones.consultarCampania(params[1], function(consulta) {
 				var camposValores = consulta[0];
 	
-				console.log("Consulta: ", consulta);
 				respuesta += "La campaña publicitaria consultada contiene estos valores<br/><ul>";
 				
 				for(let x in camposValores)
@@ -51,7 +49,6 @@ var server = http.createServer((req, res) => {
 					
 				respuesta += "</ul>";
 				
-				//res.writeHead(200, {"Content-Type": "text/plain"}); // para testeo
 				res.writeHead(200, {"Content-Type": "text/html"});
 				res.write(respuesta);
 				res.end();
@@ -126,7 +123,7 @@ var server = http.createServer((req, res) => {
 		
 		case 1004:
 			console.log(solicitud + "crear un informe de un producto competidor");
-			console.log(params);
+		
 			operaciones.crearInfProdComp(params[1], params[2], params[3], params[4], params[5]);
 			respuesta += "Operación realizada con éxito";
 			
