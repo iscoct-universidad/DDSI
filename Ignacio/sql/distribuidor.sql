@@ -1,4 +1,4 @@
 CREATE TABLE Distribuidor (
-  CodEnt       VARCHAR2(9)    PRIMARY KEY,
-  Nombre VARCHAR2(20)
+  CodEnt       INT    PRIMARY KEY,
+  Nombre VARCHAR(20)
 );
