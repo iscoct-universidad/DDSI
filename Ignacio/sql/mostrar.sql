@@ -1,17 +1,17 @@
-/* Listado de tablas de producciÛn - Ignacio Barrag·n Lozano */
+/* Listado de tablas de producci√≥n - Ignacio Barrag√°n Lozano */
 
 DECLARE
-  CodProd             VARCHAR2(9); 
-  Nombre              VARCHAR2(20);  
-  Familia             VARCHAR2(20); 
-  Modelo              VARCHAR2(20); 
-  Especificaciones    VARCHAR2(60);
+  CodProd             INTEGER; 
+  Nombre              VARCHAR(20);  
+  Familia             VARCHAR(20); 
+  Modelo              VARCHAR(20); 
+  Especificaciones    VARCHAR(60);
   Piezas              VARCHAR(50);
   Stock               INTEGER;
   Precio              INTEGER;
   
-  CodEnt              VARCHAR2(9);
-  Nombre              VARCHAR2(20);
+  CodEnt              INTEGER;
+  Nombre              INTEGER;
   
   Fecha               VARCHAR2(10);
   Cantidad            INTEGER;
@@ -23,7 +23,7 @@ BEGIN
     SELECT * INTO CodProd, Nombre, Familia, Modelo, Especificaciones, Piezas, Stock, Precio
     FROM Productos WHERE CodProd = contador;
 
-    DBMS_OUTPUT.PUT_LINE('Tabla productos: (' || Codprod || ', ' || Nombre || ', '
+    DBMS_OUTPUT.PUT_LINE('Tabla productos: (' || to_char(Codprod) || ', ' || Nombre || ', '
                           || Familia || ', ' || Modelo || ', ' || Especificaciones || ', '
                           || Piezas || ', ' || to_char(Stock) || ', '|| to_char(Precio) || ')');
   END LOOP;
@@ -32,14 +32,14 @@ BEGIN
     SELECT * INTO CodEnt, Nombre
     FROM Distribuidores WHERE CodEnt = contador;
 
-    DBMS_OUTPUT.PUT_LINE('Tabla distribuidores: (' || CodEnt || ', ' || Nombre || ')');
+    DBMS_OUTPUT.PUT_LINE('Tabla distribuidores: (' || to_char(CodEnt) || ', ' || Nombre || ')');
   END LOOP;
 
   FOR contador IN 0..4 LOOP
     SELECT * INTO CodProd, CodEnt, Fecha, Cantidad
     FROM Envia WHERE CodProd = contador;
 
-    DBMS_OUTPUT.PUT_LINE('Tabla envia: (' || CodProd || ', ' || CodEnt || ', '
+    DBMS_OUTPUT.PUT_LINE('Tabla envia: (' || to_char(CodProd) || ', ' || CodEnt || ', '
                           || Fecha || ', ' || to_char(Cantidad) ')');    
   END LOOP;
 END;
