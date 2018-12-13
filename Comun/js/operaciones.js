@@ -2,20 +2,26 @@
 
 var mysql = require('mysql');
 
-/*
-	Ningún argumento debe tener ' ', por ejemplo, si el identificador es
-	0, la función lo transforma a '0' para realizar la operación correctamente
-*/
-
-var eliminarTupla = function(nombreTabla, nombreIdentificador, identificador) {
+var conectarse = (callback) => {
 	var con = mysql.createConnection({
 		host: 		"localhost",
 		user: 		"iscoct",
 		password: 	"Vamos a aprobar DDSI de 3",
 		database:	"aux"
 	});
+	
+	con.connect((err) => {
+		callback(err, con);
+	});
+}
 
-	con.connect(function(err) {
+/*
+	Ningún argumento debe tener ' ', por ejemplo, si el identificador es
+	0, la función lo transforma a '0' para realizar la operación correctamente
+*/
+
+var eliminarTupla = function(nombreTabla, nombreIdentificador, identificador) {
+	conectarse(function(err, con) {
 		if(err)
 			console.log("Error al intentar conectar con la base de datos en eliminarTupla");
 
@@ -36,10 +42,9 @@ var eliminarTupla = function(nombreTabla, nombreIdentificador, identificador) {
 
 /*
 	Prueba del método eliminarTupla
-
+	
 eliminarTupla("Entidad", "CodEnt", "2");
 eliminarTupla("CampaniaPublicitaria", "CodEnt", "2");
-
 */
 
 /*
@@ -50,14 +55,7 @@ eliminarTupla("CampaniaPublicitaria", "CodEnt", "2");
 */
 
 var insertarTupla = function(nombreTabla, campos, valores) {
-	var con = mysql.createConnection({
-		host: 		"localhost",
-		user: 		"iscoct",
-		password: 	"Vamos a aprobar DDSI de 3",
-		database:	"aux"
-	});
-	
-	con.connect(function(err) {
+	conectarse(function(err,con) {
 		if(err)
 			console.log("Error al intentar conectar con la base de datos en insertarTupla");
 
@@ -112,7 +110,6 @@ insertarTupla("CampaniaPublicitaria", camposCampania, valoresCampania);
 	
 	TRUCO PARA PODER REUTILIZAR modificarTupla
 	
-	Si hay más de una tabla implicada se puede poner
 	Si hay alguna condición extraordinaria podremos ponerla en el primer parámetro de camposCondiciones,
 	ejemplo:
 		update Entidad, CampaniaPublicitaria set Entidad.Nombre = 'X' where <condicionEspecial and> 
@@ -123,14 +120,7 @@ insertarTupla("CampaniaPublicitaria", camposCampania, valoresCampania);
 */
 
 var modificarTupla = (nombreTabla, campos, valores, camposCondiciones, condiciones) => {
-	var con = mysql.createConnection({
-		host: 		"localhost",
-		user: 		"iscoct",
-		password: 	"Vamos a aprobar DDSI de 3",
-		database:	"aux"
-	});
-	
-	con.connect(function(err) {
+	conectarse(function(err, con) {
 		if(err)
 			console.log("Error al intentar conectarse a la BD en modificarTupla");
 			
@@ -178,26 +168,7 @@ var condiciones = ["1"];
 modificarTupla("Entidad", campos, valores, camposCondicion, condiciones);
 */
 
-/*
-	Función para crear la conexión con nuestra base de datos
-	
-	callback:	Función que se llamará una vez terminada la conexión
-			Debe recibir como parámetro la función callback, la conexión
-			
-	NO TESTEADO
-
-var conectarConBD = (callback) => {
-	var con = mysql.createConnection({
-		host: 		"localhost",
-		user: 		"iscoct",
-		password: 	"Vamos a aprobar DDSI de 3",
-		database:	"aux"
-	});
-	con.connect(callback(err, con));
-}
-
-*/
-
+module.exports.conectarse = conectarse;
 module.exports.modificarTupla = modificarTupla;
 module.exports.eliminarTupla = eliminarTupla;
 module.exports.insertarTupla = insertarTupla;
