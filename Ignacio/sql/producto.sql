@@ -1,5 +1,5 @@
 CREATE TABLE Producto (
-  CodProd    VARCHAR(9)  PRIMARY KEY,
+  CodProd    INT  PRIMARY KEY,
   Nombre    VARCHAR(20) NOT NULL,
   Familia    VARCHAR(20) NOT NULL,
   Modelo       VARCHAR(20)   NOT NULL,
