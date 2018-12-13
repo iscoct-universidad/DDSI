@@ -11,9 +11,9 @@ DECLARE
   Precio              INTEGER;
   
   CodEnt              INTEGER;
-  Nombre              INTEGER;
+  NombreD              VARCHAR(20);
   
-  Fecha               VARCHAR2(10);
+  Fecha               VARCHAR(10);
   Cantidad            INTEGER;
 
   contador INTEGER;
@@ -39,7 +39,7 @@ BEGIN
     SELECT * INTO CodProd, CodEnt, Fecha, Cantidad
     FROM Envia WHERE CodProd = contador;
 
-    DBMS_OUTPUT.PUT_LINE('Tabla envia: (' || to_char(CodProd) || ', ' || CodEnt || ', '
+    DBMS_OUTPUT.PUT_LINE('Tabla envia: (' || to_char(CodProd) || ', ' || to_char(CodEnt) || ', '
                           || Fecha || ', ' || to_char(Cantidad) ')');    
   END LOOP;
 END;
