@@ -1,4 +1,4 @@
-/* Cursor de producciÛn - Ignacio Barrag·n Lozano */
+/* Cursor de producci√≥n - Ignacio Barrag√°n Lozano */
 
 -- Listado de productos enviados a un distribuidor y su familia --
 
@@ -8,8 +8,8 @@ DECLARE
     FROM Producto, Envia
     WHERE Envia.CodEnt = 1 AND Envia.CodProd = Producto.CodProd;
 
-  NombreProducto VARCHAR2(20);
-  FamiliaProducto VARCHAR2(20);
+  NombreProducto VARCHAR(20);
+  FamiliaProducto VARCHAR(20);
 
 BEGIN
   OPEN cProductos;
