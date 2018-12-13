@@ -1,0 +1,10 @@
+INSERT INTO CampaniaPublicitaria VALUES ('0','A', 'A');
+INSERT INTO CampaniaPublicitaria VALUES ('1','B', 'B');
+INSERT INTO CampaniaPublicitaria VALUES ('2','C', 'C');
+INSERT INTO CampaniaPublicitaria VALUES ('3','D', 'D');
+INSERT INTO CampaniaPublicitaria VALUES ('4','E', 'E');
+INSERT INTO CampaniaPublicitaria VALUES ('5','F', 'F');
+INSERT INTO CampaniaPublicitaria VALUES ('6','G', 'G');
+INSERT INTO CampaniaPublicitaria VALUES ('7','H', 'H');
+INSERT INTO CampaniaPublicitaria VALUES ('8','I', 'I');
+INSERT INTO CampaniaPublicitaria VALUES ('9','J', 'J');

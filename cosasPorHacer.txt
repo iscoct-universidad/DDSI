@@ -1,0 +1,15 @@
+Inciso: El tipo varchar2 no existe en mysql!!!
+Inciso: Los identificadores deben ser valores enteros, la razón de esto es que
+		si queremos compararlos por orden, por ejemplo si queremos
+		introducir un nuevo valores y queremos obtener el máximo
+		para tomar un valor que no esté todavía asignado,
+		por ser caracteres el 9 > 10 según el orden lexicográfico.
+		
+consultarCampania aproved
+creacionCampania aproved
+eliminacionCampania aproved
+modificarCampania aproved
+crearInformeCompetidor aproved
+creadoServidor aproved
+
+1.- Modificar páginas html para que se haga correctamente la emisión de peticiones

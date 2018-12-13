@@ -1,0 +1,10 @@
+INSERT INTO Promociona VALUES ('0', '0');
+INSERT INTO Promociona VALUES ('1', '1');
+INSERT INTO Promociona VALUES ('2', '2');
+INSERT INTO Promociona VALUES ('3', '3');
+INSERT INTO Promociona VALUES ('4', '4');
+INSERT INTO Promociona VALUES ('5', '5');
+INSERT INTO Promociona VALUES ('6', '6');
+INSERT INTO Promociona VALUES ('7', '7');
+INSERT INTO Promociona VALUES ('8', '8');
+INSERT INTO Promociona VALUES ('9', '9');

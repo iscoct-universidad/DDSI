@@ -4,25 +4,11 @@
 	</head>
 	<body>
 		<p>Introduzca los datos de la campaña publicitaria</p>
-		<form onclick="enviar()">
-			Nombre: <input type="text" class="formulario"/><br/>
-			Tipo: <input type="text" class="formulario"/><br/>
-			Público objetivo: <input class="text" name="formulario"/><br/>
-			<input type="submit" value="Enviar" class="formulario"/>
+		<form action="http://localhost:8081/1000" method="get">
+			Nombre: <input type="text" name="nombre"/><br/>
+			Tipo: <input type="text" name="tipo"/><br/>
+			Público objetivo: <input type="text" name="publicoObjetivo"/><br/>
+			<input type="submit" value="Enviar"/>
 		</form>
 	</body>
-	<script>
-		function enviar() {
-			var http = new XMLHttpRequest();
-			var formulario = document.getElementByClassName("formulario");
-			var cadena = "";
-			var tam = formulario.length;
-
-			for(i = 0; i < tam; ++i)
-				cadena += formulario.innerHTML;
-
-			http.open("POST", "localhost:8081" , true);
-			http.send(cadena);
-		}
-	</script>
 </html>

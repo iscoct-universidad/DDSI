@@ -2,19 +2,19 @@
 
 DECLARE
 
-  CodEnt            VARCHAR2(9);
-  Tipo              VARCHAR2(50);
+  CodEnt            VARCHAR(9);
+  Tipo              VARCHAR(50);
   PublicoObjetivo   VARCHAR(50);
 
-  CodProd           VARCHAR2(9);
+  CodProd           VARCHAR(9);
 
-  CodProdComp       VARCHAR2(9);
+  CodProdComp       VARCHAR(9);
   Precio            REAL;
   Nombre            VARCHAR(2),;
   Rendimiento       REAl;
 
-  CodComp           VARCHAR2(10);
-  Informe           VARCHAR2(100);
+  CodComp           VARCHAR(10);
+  Informe           VARCHAR(100);
 
   contador INTEGER;
 
