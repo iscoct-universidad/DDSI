@@ -14,7 +14,7 @@ const operacionesComunes = require('../../Comun/js/operaciones');
 var crearEmpleado = (nombre, dni, direccion, telefono, sueldo, estado) => {
 	operacionesComunes.conectarse(function(err, con) {
 		if(err)
-			console.log("Hubo un error al conectarse con la BD");
+			console.log("Hubo un error al conectarse con la BD en crearEmpleado");
 
 		operacionesComunes.tomarMaximo(con, "CodEnt", "Entidad", (err, maximo) => {
 			if(err)
@@ -38,6 +38,29 @@ var crearEmpleado = (nombre, dni, direccion, telefono, sueldo, estado) => {
 	});
 }
 
+var crearDepartamento = (localizacion, area) => {
+  operacionesComunes.conectarse(function(err, con) {
+		if(err)
+			console.log("Hubo un error al intentar conectarse a la BD en crearDepartamento");
+
+		operacionesComunes.tomarMaximo(con, "CodDep", "Departamento", (err, maximo) => {
+      if(err)
+				console.log("Hubo un error al hacer la consulta del máximo iden Departamento");
+			else
+				console.log("Realizada la consulta del máximo iden del Departamento");
+
+			let idNuevo = maximo + 1;
+			let valores = [idNuevo, localizacion, area];
+			let campos = ["CodDep", "Localizacion", "Area"];
+
+			operacionesComunes.insertarTupla("Departamento", campos, valores);
+
+      con.end();
+			});
+		});
+	});
+}
+
 /*
 	Prueba de que crearCampania funciona
 
@@ -50,22 +73,18 @@ crearCampania("K", "K", "K");
 	el resultado de la consulta realizada, y este se encargará de tratar con él
 */
 
-var consultarCampania = (identificador, callback) => {		// Otra manera de declarar funciones
+var consultarEmpleado = (identificador, callback) => {
 	operacionesComunes.conectarse(function(err, con) {
 		if(err)
-			console.log("Hubo un error al conectarse con la BD");
+			console.log("Hubo un error al conectarse con la BD en consultarEmpleado");
 
-		let sql = "select Entidad.nombre, CampaniaPublicitaria.Tipo, " +
-			"CampaniaPublicitaria.PublicoObjetivo from Entidad, CampaniaPublicitaria" +
-			" where Entidad.CodEnt = \'" + identificador + "\' and " +
-			" CampaniaPublicitaria.CodEnt = " + identificador + ";";
+		let sql = "SELECT * FROM Empleados WHERE CodEnt = " + identificador + ";";
 
 		con.query(sql, function(err, result) {
 			if(err)
-				console.log("Hubo un error al hacer la consulta de la " +
-					" campaña publicitaria");
+				console.log("Hubo un error al hacer la consulta del empleado";
 			else
-				console.log("Realizada la consulta de la campaña publicitaria");
+				console.log("Realizada la consulta del empleado");
 
 			callback(result);
 			con.end();

@@ -1,10 +1,12 @@
 /* Códigos
-	1001: Consultar empleado
-	1002: Consultar departamento
-	1003: Modificar empleado
-	1004: Modificar departamento
-	1005: Eliminar empleado
-	1006: Eliminar departamento
+	1000: Crear empleado
+	1001: Crear departamento
+	1002: Consultar empleado
+	1003: Consultar departamento
+	1004: Modificar empleado
+	1005: Modificar departamento
+	1006: Eliminar empleado
+	1007: Eliminar departamento
 */
 const http = require('http');
 const url = require('url');
@@ -31,7 +33,7 @@ var server = http.createServer((req, res) => {
 
 	switch(Number(params[0])) {
 		/*
-			Los parámetros deben estar en el mismo orden que la emisión de la petición			
+			Los parámetros deben estar en el mismo orden que la emisión de la petición
 		*/
 		case 1000:
 			console.log(solicitud + "crear una empleado");
@@ -45,14 +47,27 @@ var server = http.createServer((req, res) => {
 			res.write(respuesta);
 			res.end();
 		break;
-		case 1001:
-			console.log(solicitud + "consultar una campaña publicitaria");
 
-			operaciones.consultarCampania(params[1], function(consulta) {
+		case 1001:
+			console.log(solicitud + "crear un departamento");
+			operaciones.crearDepartamentodo(params[1], params[2]);
+
+			respuesta += "Operación realizada con éxito";
+
+
+			res.writeHead(200, {"Content-Type": "text/html"});
+			res.write(respuesta);
+			res.end();
+		break;
+
+		case 1002:
+			console.log(solicitud + "consultar un empleado");
+
+			operaciones.consultarEmpleado(params[1], function(consulta) {
 				var camposValores = consulta[0];
 
 				console.log("Consulta: ", consulta);
-				respuesta += "La campaña publicitaria consultada contiene estos valores<br/><ul>";
+				respuesta += "El empleado consultado contiene estos valores<br/><ul>";
 
 				for(let x in camposValores)
 					respuesta += "<li>" + x + ": " + camposValores[x] + "</li>";

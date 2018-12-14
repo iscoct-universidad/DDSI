@@ -13,9 +13,9 @@ Si vais a hacer varios cambios seguidos hacedlos todos de golpe por favor :sweat
   * Operaciones JS
     * Crear Empleado __(Por comprobar)__
     * Modificar Empleado
-    * Consultar Empleado
+    * Consultar Empleado __(Por comprobar)__
     * Eliminar Empleado
-    * Crear Departamento
+    * Crear Departamento __(Por comprobar)__
     * Modificar Departamento
     * Consultar Departamento
     * Eliminar Departamento
