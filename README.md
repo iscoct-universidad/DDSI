@@ -2,7 +2,7 @@
 Proyecto de DDSI
 
 ## Avisos
-_Nada por aquí_
+Si vais a hacer varios cambios seguidos hacedlos todos de golpe por favor :sweat_smile:
 
 ## Cosas por hacer
 **Comunes**
