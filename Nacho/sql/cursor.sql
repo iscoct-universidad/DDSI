@@ -24,4 +24,3 @@ BEGIN
 
   CLOSE cEmpleados;
 END;
-/

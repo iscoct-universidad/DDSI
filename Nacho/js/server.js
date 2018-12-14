@@ -1,3 +1,11 @@
+/* Códigos
+	1001: Consultar empleado
+	1002: Consultar departamento
+	1003: Modificar empleado
+	1004: Modificar departamento
+	1005: Eliminar empleado
+	1006: Eliminar departamento
+*/
 const http = require('http');
 const url = require('url');
 const operaciones = require('./operacionesRecursosHumanos');

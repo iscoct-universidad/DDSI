@@ -18,4 +18,3 @@ BEGIN
     WHERE CodIngPag = :new.CodIngPag;
   END IF;
 END;
-/

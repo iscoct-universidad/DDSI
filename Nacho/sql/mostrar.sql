@@ -1,10 +1,10 @@
 /* Listado de tablas de recursos humanos - Ignacio Vellido Expósito */
 
 DECLARE
-  CodEnt       VARCHAR2(9); 
-  Nombre       VARCHAR2(30);  
-  DNI          VARCHAR2(9); 
-  Telefono     VARCHAR2(13); 
+  CodEnt       VARCHAR2(9);
+  Nombre       VARCHAR2(30);
+  DNI          VARCHAR2(9);
+  Telefono     VARCHAR2(13);
   Direccion    VARCHAR2(50);
   Sueldo       INTEGER;
   Estado       CHAR(1);
@@ -40,7 +40,6 @@ BEGIN
     FROM Pertenece WHERE CodEnt = contador;
 
     DBMS_OUTPUT.PUT_LINE('Tabla pertence: (' || CodEnt || ', ' || CodDep || ', '
-                          || Fecha || ')');    
+                          || Fecha || ')');
   END LOOP;
 END;
-/

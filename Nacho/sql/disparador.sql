@@ -5,8 +5,7 @@
 CREATE OR REPLACE TRIGGER modificarDepartamento
 BEFORE INSERT ON Pertenece
 FOR EACH ROW
-BEGIN  
+BEGIN
   DELETE FROM Pertenece
   WHERE CodEnt = :new.CodEnt AND Fecha = :new.Fecha;
 END;
-/

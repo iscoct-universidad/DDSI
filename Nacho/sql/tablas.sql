@@ -14,13 +14,13 @@ CREATE TABLE Empleados (
 );
 
 CREATE TABLE Departamentos (
-  CodDep       VARCHAR(9)    PRIMARY KEY,
+  CodDep       INT          PRIMARY KEY,
   Localizacion VARCHAR(50),
   Area         VARCHAR(30)
 );
 
 CREATE TABLE Pertenece (
-  CodEnt VARCHAR(9)    NOT NULL  REFERENCES Empleados(CodEnt),
+  CodEnt INT           NOT NULL  REFERENCES Empleados(CodEnt),
   CodDep VARCHAR(9)    NOT NULL  REFERENCES Departamentos(CodDep),
   Fecha  VARCHAR(10)   NOT NULL,
   PRIMARY KEY (CodEnt, Fecha)

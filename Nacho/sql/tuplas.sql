@@ -25,4 +25,3 @@ INSERT INTO Pertenece VALUES ('1', '2', TO_CHAR(SYSDATE, 'dd-mm-yyyy'));
 INSERT INTO Pertenece VALUES ('2', '6', TO_CHAR(SYSDATE, 'dd-mm-yyyy'));
 INSERT INTO Pertenece VALUES ('3', '8', TO_CHAR(SYSDATE, 'dd-mm-yyyy'));
 INSERT INTO Pertenece VALUES ('4', '8', TO_CHAR(SYSDATE, 'dd-mm-yyyy'));
-/ 
