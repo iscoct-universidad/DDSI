@@ -4,6 +4,48 @@ const mysql = require('mysql');
 const operacionesComunes = require('../../Comun/js/operaciones');
 
 /*
+	Para crear una campaña primero voy a consultar todos los códigos
+	y voy a sacar el máximo identificador de tal manera que el identificador que utilicemos
+	sea uno mayor al máximo de los CodEnt existentes
+
+	Luego crearemos primero la Entidad y luego la Campaña publicitaria
+*/
+
+var crearEmpleado = (nombre, dni, direccion, telefono, sueldo, estado) => {
+	operacionesComunes.conectarse(function(err, con) {
+		if(err)
+			console.log("Hubo un error al conectarse con la BD");
+
+		operacionesComunes.tomarMaximo(con, "CodEnt", "Entidad", (err, maximo) => {
+			if(err)
+				console.log("Hubo un error al hacer la consulta del máximo iden Entidad");
+			else
+				console.log("Realizada la consulta del máximo iden de la Entidad");
+
+			let identificador = maximo + 1;
+			let campos = ["CodEnt", "Nombre"];
+			let valores = [identificador, nombre];
+
+			operacionesComunes.insertarTupla("Entidad", campos, valores);
+
+			campos = ["CodEnt", "DNI", "Direccion", "Telefono", "Sueldo", "Estado"];
+			valores = [identificador, dni, direccion, telefono, sueldo, estado];
+
+			operacionesComunes.insertarTupla("Empleado", campos, valores);
+
+			con.end();
+		});
+	});
+}
+
+/*
+	Prueba de que crearCampania funciona
+
+crearCampania("K", "K", "K");
+*/
+
+
+/*
 	callback será una función a la que le enviaremos
 	el resultado de la consulta realizada, y este se encargará de tratar con él
 */
@@ -55,47 +97,6 @@ var eliminarCampania = (identificador) => {
 
 eliminarCampania(3);
 
-*/
-
-/*
-	Para crear una campaña primero voy a consultar todos los códigos
-	y voy a sacar el máximo identificador de tal manera que el identificador que utilicemos
-	sea uno mayor al máximo de los CodEnt existentes
-
-	Luego crearemos primero la Entidad y luego la Campaña publicitaria
-*/
-
-var crearCampania = (nombre, tipo, publicoObjetivo) => {
-	operacionesComunes.conectarse(function(err, con) {
-		if(err)
-			console.log("Hubo un error al conectarse con la BD");
-
-		operacionesComunes.tomarMaximo(con, "CodEnt", "Entidad", (err, maximo) => {
-			if(err)
-				console.log("Hubo un error al hacer la consulta del máximo iden Entidad");
-			else
-				console.log("Realizada la consulta del máximo iden de la Entidad");
-
-			let identificador = maximo + 1;
-			let campos = ["CodEnt", "Nombre"];
-			let valores = [identificador, nombre];
-
-			operacionesComunes.insertarTupla("Entidad", campos, valores);
-
-			campos = ["CodEnt", "Tipo", "PublicoObjetivo"];
-			valores = [identificador, tipo, publicoObjetivo];
-
-			operacionesComunes.insertarTupla("CampaniaPublicitaria", campos, valores);
-
-			con.end();
-		});
-	});
-}
-
-/*
-	Prueba de que crearCampania funciona
-
-crearCampania("K", "K", "K");
 */
 
 /*

@@ -1,7 +1,7 @@
 /* Listado de tablas de recursos humanos - Ignacio Vellido Expósito */
 
 DECLARE
-  CodEnt       VARCHAR2(9);
+  CodEnt       INT(9);
   Nombre       VARCHAR2(30);
   DNI          VARCHAR2(9);
   Telefono     VARCHAR2(13);
@@ -9,7 +9,7 @@ DECLARE
   Sueldo       INTEGER;
   Estado       CHAR(1);
   ----------------------------------------------------------------------------
-  CodDep       VARCHAR2(9);
+  CodDep       INT(9);
   Localizacion VARCHAR2(50);
   Area         VARCHAR2(30);
   ----------------------------------------------------------------------------
@@ -22,7 +22,7 @@ BEGIN
     SELECT * INTO CodEnt, Nombre, DNI, Telefono, Direccion, Sueldo, Estado
     FROM Empleados WHERE CodEnt = contador;
 
-    DBMS_OUTPUT.PUT_LINE('Tabla empleados: (' || CodEnt || ', ' || Nombre || ', '
+    DBMS_OUTPUT.PUT_LINE('Tabla empleados: (' || to_char(CodEnt) || ', ' || Nombre || ', '
                           || DNI || ', ' || Telefono || ', ' || Direccion || ', '
                           || to_char(Sueldo) || ', '|| Estado || ')');
   END LOOP;
@@ -31,7 +31,7 @@ BEGIN
     SELECT * INTO CodDep, Localizacion, Area
     FROM Departamentos WHERE CodDep = contador;
 
-    DBMS_OUTPUT.PUT_LINE('Tabla departamentos: (' || CodDep || ', ' || Localizacion || ', '
+    DBMS_OUTPUT.PUT_LINE('Tabla departamentos: (' || to_char(CodDep) || ', ' || Localizacion || ', '
                           || Area || ')');
   END LOOP;
 
@@ -39,7 +39,7 @@ BEGIN
     SELECT * INTO CodEnt, CodDep, Fecha
     FROM Pertenece WHERE CodEnt = contador;
 
-    DBMS_OUTPUT.PUT_LINE('Tabla pertence: (' || CodEnt || ', ' || CodDep || ', '
+    DBMS_OUTPUT.PUT_LINE('Tabla pertence: (' || to_char(CodEnt) || ', ' || to_char(CodDep) || ', '
                           || Fecha || ')');
   END LOOP;
 END;

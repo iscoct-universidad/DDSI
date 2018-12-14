@@ -25,4 +25,3 @@ CREATE TABLE Pertenece (
   Fecha  VARCHAR(10)   NOT NULL,
   PRIMARY KEY (CodEnt, Fecha)
 );
-/

@@ -31,12 +31,12 @@ var server = http.createServer((req, res) => {
 
 	switch(Number(params[0])) {
 		/*
-			Los parámetros deben estar en el orden Nombre, Tipo, PublicoObjetivo en la emisión
-			de la petición
+			Los parámetros deben estar en el mismo orden que la emisión de la petición			
 		*/
 		case 1000:
-			console.log(solicitud + "crear una campaña publicitaria");
-			operaciones.crearCampania(params[1], params[2], params[3]);
+			console.log(solicitud + "crear una empleado");
+			operaciones.crearEmpleado(params[1], params[2], params[3], params[4],
+																					 params[5], params[6]);
 
 			respuesta += "Operación realizada con éxito";
 
