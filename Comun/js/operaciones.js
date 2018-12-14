@@ -2,7 +2,7 @@
 
 var mysql = require('mysql');
 
-var conectarse = (callback) => {
+const conectarse = (callback) => {
 	var con = mysql.createConnection({
 		host: 		"localhost",
 		user: 		"iscoct",
@@ -20,7 +20,7 @@ var conectarse = (callback) => {
 	0, la función lo transforma a '0' para realizar la operación correctamente
 */
 
-var eliminarTupla = function(nombreTabla, nombreIdentificador, identificador) {
+const eliminarTupla = function(nombreTabla, nombreIdentificador, identificador) {
 	conectarse(function(err, con) {
 		if(err)
 			console.log("Error al intentar conectar con la base de datos en eliminarTupla");
@@ -54,7 +54,7 @@ eliminarTupla("CampaniaPublicitaria", "CodEnt", "2");
 	uno de los campos introducidos
 */
 
-var insertarTupla = function(nombreTabla, campos, valores) {
+const insertarTupla = function(nombreTabla, campos, valores) {
 	conectarse(function(err,con) {
 		if(err)
 			console.log("Error al intentar conectar con la base de datos en insertarTupla");
@@ -119,7 +119,7 @@ insertarTupla("CampaniaPublicitaria", camposCampania, valoresCampania);
 		y condicionesNormales puede ser igual a Entidad.Nombre = 'Z'.
 */
 
-var modificarTupla = (nombreTabla, campos, valores, camposCondiciones, condiciones) => {
+const modificarTupla = (nombreTabla, campos, valores, camposCondiciones, condiciones) => {
 	conectarse(function(err, con) {
 		if(err)
 			console.log("Error al intentar conectarse a la BD en modificarTupla");
@@ -168,6 +168,37 @@ var condiciones = ["1"];
 modificarTupla("Entidad", campos, valores, camposCondicion, condiciones);
 */
 
+/*
+	Dado un campo y una tabla toma el máximo de ese campo
+	@param	con Conexión abierta con la BD
+	@return	Devuelve el máximo de dicho campo con tipo Number o -1 sino hay ninguna
+		tupla insertada aún
+*/
+
+const tomarMaximo = (con, campo, tabla, callback) => {
+	campo = "MAX(" + campo +")";
+	var sql = "select " + campo + " from " + tabla + ";";
+	var maximo;
+	
+	con.query(sql, (err, result) => {
+		maximo = (result[0][campo] != null) ? Number(result[0][campo]) : Number("-1");
+	
+		callback(err, maximo);
+	});
+}
+
+/*
+	Prueba de que tomarSigMaximo funciona
+
+conectarse((err, con) => {
+	tomarMaximo(con, "CodEnt", "Entidad", (result) => {
+		console.log("Resultado: ", result);
+		con.end();
+	});
+});
+*/
+
+module.exports.tomarMaximo = tomarMaximo;
 module.exports.conectarse = conectarse;
 module.exports.modificarTupla = modificarTupla;
 module.exports.eliminarTupla = eliminarTupla;
