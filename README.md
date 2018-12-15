@@ -2,7 +2,14 @@
 Proyecto de DDSI
 
 ## Avisos
-Si vais a hacer varios cambios seguidos hacedlos todos de golpe por favor :sweat_smile:
+* Datos de la base de datos
+ > __Nombre__: aux\
+ __Usuario__: iscoct\
+ __Contraseña__: Vamos a aprobar DDSI de 3\
+ \
+ Se pueden cambiar en el archivo _operaciones.js_, pero si se hace no subir la modificación a Git
+ 
+* Si vais a hacer varios cambios seguidos hacedlos todos de golpe por favor :sweat_smile:
 
 ## Cosas por hacer
 **Comunes**
