@@ -9,6 +9,10 @@ Proyecto de DDSI
  \
  Se pueden cambiar en el archivo _operaciones.js_, pero si se hace no subir la modificación a Git
  
+* Guía de uso
+> __Instalar NodeJS__\
+  __Instalar MySQL__
+ 
 * Si vais a hacer varios cambios seguidos hacedlos todos de golpe por favor :sweat_smile:
 
 ## Cosas por hacer
