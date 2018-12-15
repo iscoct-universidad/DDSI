@@ -50,7 +50,7 @@ var server = http.createServer((req, res) => {
 
 		case 1001:	// Crear departamento
 			console.log(solicitud + "crear un departamento");
-			operaciones.crearDepartamentodo(params[1], params[2]);
+			operaciones.crearDepartamento(params[1], params[2]);
 
 			respuesta += "Operación realizada con éxito";
 
@@ -152,7 +152,7 @@ var server = http.createServer((req, res) => {
 			res.write(respuesta);
 			res.end();
 		break;
-
+/*	Hay que cambiar el nombre de cada variable para que no choque con las anteriores
 		case 1005:	// Modificar departamento
 			console.log(solicitud + "modificar un empleado");
 
@@ -198,7 +198,7 @@ var server = http.createServer((req, res) => {
 			res.write(respuesta);
 			res.end();
 		break;
-
+*/
 		case 1006:	// Eliminar empleado
 			console.log(solicitud + "eliminar un empleado");
 			operaciones.eliminarEmpleado(params[1]);

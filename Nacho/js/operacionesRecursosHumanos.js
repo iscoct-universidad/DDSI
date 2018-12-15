@@ -28,10 +28,10 @@ var crearEmpleado = (nombre, dni, direccion, telefono, sueldo, estado) => {
 
 			operacionesComunes.insertarTupla("Entidad", campos, valores);
 
-			campos = ["CodEnt", "DNI", "Direccion", "Telefono", "Sueldo", "Estado"];
-			valores = [identificador, dni, direccion, telefono, sueldo, estado];
+			campos = ["CodEnt", "Nombre", "DNI", "Direccion", "Telefono", "Sueldo", "Estado"];
+			valores = [identificador, nombre, dni, direccion, telefono, sueldo, estado];
 
-			operacionesComunes.insertarTupla("Empleado", campos, valores);
+			operacionesComunes.insertarTupla("Empleados", campos, valores);
 
 			con.end();
 		});
@@ -43,7 +43,7 @@ var crearDepartamento = (localizacion, area) => {
 		if(err)
 			console.log("Hubo un error al intentar conectarse a la BD en crearDepartamento");
 
-		operacionesComunes.tomarMaximo(con, "CodDep", "Departamento", (err, maximo) => {
+		operacionesComunes.tomarMaximo(con, "CodDep", "Departamentos", (err, maximo) => {
       if(err)
 				console.log("Hubo un error al hacer la consulta del máximo iden Departamento");
 			else
@@ -53,10 +53,9 @@ var crearDepartamento = (localizacion, area) => {
 			let valores = [idNuevo, localizacion, area];
 			let campos = ["CodDep", "Localizacion", "Area"];
 
-			operacionesComunes.insertarTupla("Departamento", campos, valores);
+			operacionesComunes.insertarTupla("Departamentos", campos, valores);
 
       con.end();
-			});
 		});
 	});
 }
@@ -82,7 +81,7 @@ var consultarEmpleado = (identificador, callback) => {
 
 		con.query(sql, function(err, result) {
 			if(err)
-				console.log("Hubo un error al hacer la consulta del empleado";
+				console.log("Hubo un error al hacer la consulta del empleado");
 			else
 				console.log("Realizada la consulta del empleado");
 
@@ -111,11 +110,11 @@ var consultarDepartamento = (identificador, callback) => {
 		if(err)
 			console.log("Hubo un error al conectarse con la BD en consultarDepartamento");
 
-		let sql = "SELECT * FROM Departamento WHERE CodEnt = " + identificador + ";";
+		let sql = "SELECT * FROM Departamentos WHERE CodDep = " + identificador + ";";
 
 		con.query(sql, function(err, result) {
 			if(err)
-				console.log("Hubo un error al hacer la consulta del departamento";
+				console.log("Hubo un error al hacer la consulta del departamento");
 			else
 				console.log("Realizada la consulta del departamento");
 
@@ -128,11 +127,11 @@ var consultarDepartamento = (identificador, callback) => {
 
 var eliminarEmpleado = (identificador) => {
 	operacionesComunes.eliminarTupla("Entidad", "CodEnt", identificador);
-	operacionesComunes.eliminarTupla("Empleado", "CodEnt", identificador);
+	operacionesComunes.eliminarTupla("Empleados", "CodEnt", identificador);
 }
 
-var eliminarDepartamentodo = (identificador) => {
-	operacionesComunes.eliminarTupla("Departamento", "CodDep", identificador);
+var eliminarDepartamento = (identificador) => {
+	operacionesComunes.eliminarTupla("Departamentos", "CodDep", identificador);
 }
 
 /*
@@ -150,11 +149,11 @@ eliminarCampania(3);
 */
 
 var modificarEmpleado = (campos, valores, camposCondiciones, condiciones) => {
-	operacionesComunes.modificarTupla("Entidad, Empleado", campos, valores, camposCondiciones, condiciones);
+	operacionesComunes.modificarTupla("Entidad, Empleados", campos, valores, camposCondiciones, condiciones);
 }
 
 var modificarDepartamento = (campos, valores, camposCondiciones, condiciones) => {
-	operacionesComunes.modificarTupla("Departamento", campos, valores, camposCondiciones, condiciones);
+	operacionesComunes.modificarTupla("Departamentos", campos, valores, camposCondiciones, condiciones);
 }
 
 /*
@@ -217,5 +216,3 @@ module.exports.crearDepartamento = crearDepartamento;
 module.exports.consultarDepartamento = consultarDepartamento;
 module.exports.modificarEmpleado = modificarEmpleado;
 module.exports.eliminarEmpleado = eliminarEmpleado;
-
-//module.exports.crearInfProdComp = crearInfProdComp;
