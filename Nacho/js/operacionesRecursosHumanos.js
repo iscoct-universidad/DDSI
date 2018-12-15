@@ -106,9 +106,33 @@ consultarCampania(5, tratamientoConsulta);
 
 */
 
-var eliminarCampania = (identificador) => {
+var consultarDepartamento = (identificador, callback) => {
+	operacionesComunes.conectarse(function(err, con) {
+		if(err)
+			console.log("Hubo un error al conectarse con la BD en consultarDepartamento");
+
+		let sql = "SELECT * FROM Departamento WHERE CodEnt = " + identificador + ";";
+
+		con.query(sql, function(err, result) {
+			if(err)
+				console.log("Hubo un error al hacer la consulta del departamento";
+			else
+				console.log("Realizada la consulta del departamento");
+
+			callback(result);
+			con.end();
+		});
+	});
+};
+
+
+var eliminarEmpleado = (identificador) => {
 	operacionesComunes.eliminarTupla("Entidad", "CodEnt", identificador);
-	operacionesComunes.eliminarTupla("CampaniaPublicitaria", "CodEnt", identificador);
+	operacionesComunes.eliminarTupla("Empleado", "CodEnt", identificador);
+}
+
+var eliminarDepartamentodo = (identificador) => {
+	operacionesComunes.eliminarTupla("Departamento", "CodDep", identificador);
 }
 
 /*

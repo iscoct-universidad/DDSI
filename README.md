@@ -14,9 +14,9 @@ Si vais a hacer varios cambios seguidos hacedlos todos de golpe por favor :sweat
     * Crear Empleado __(Por comprobar)__
     * Modificar Empleado
     * Consultar Empleado __(Por comprobar)__
-    * Eliminar Empleado
+    * Eliminar Empleado __(Por comprobar)__  
     * Crear Departamento __(Por comprobar)__
     * Modificar Departamento
-    * Consultar Departamento
-    * Eliminar Departamento
+    * Consultar Departamento __(Por comprobar)__  
+    * Eliminar Departamento __(Por comprobar)__  
     * Operaciones adicionales (cursor, tabla Pertenece y demás)
