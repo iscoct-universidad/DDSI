@@ -58,7 +58,7 @@ const eliminarTodasLasTablas = () => {
 		var oper = "drop table ";
 
 		// Ponemos aquí nuestras tablas en cascada
-		oper += "Pertenece, Departamento, Empleado" +
+		oper += "Pertenece, Departamentos, Empleados, " +
 						"Promociona, Compara, ProductoCompetidor, CampaniaPublicitaria, Entidad, Producto";
 
 		con.query(oper, (err, result) => {
@@ -104,8 +104,8 @@ const crearTodasLasTuplas = () => {
 	leer(rutaNacho,		"tuplasPertenece.sql",		crearTupla);
 }
 
-//eliminarTodasLasTablas();
-//crearTodasLasTablas();
+eliminarTodasLasTablas();
+crearTodasLasTablas();
 crearTodasLasTuplas();
 
 /*

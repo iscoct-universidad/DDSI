@@ -6,7 +6,7 @@ const conectarse = (callback) => {
 	var con = mysql.createConnection({
 		host: 		"localhost",
 		user: 		"iscoct",
-		password: 	"Vamos a aprobar DDSI de 3",
+		password: "Vamos a aprobar DDSI de 3",
 		database:	"aux"
 	});
 
