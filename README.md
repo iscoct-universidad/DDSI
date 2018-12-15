@@ -10,7 +10,10 @@ Proyecto de DDSI
  Se pueden cambiar en el archivo _operaciones.js_, pero si se hace no subir la modificación a Git
  
 * Guía de instalación
-> * __Instalar NodeJS__
+> * __Instalar NodeJS__ 
+>   * sudo apt update
+>   * sudo apt install nodejs
+>   * sudo apt install npm
 > * __Instalar MySQL__
 > * Una vez configurada bien la base de datos y creado el usuario, por este orden se puede comprobar el buen funcionamiento de estos
 > * Comprobamos que con el fichero operacionesTablas.js en Comun/js, al hacer node operacionesTablas.js una vez insertado nuestras tablas y tuplas en crearTodasLasTuplas/crearLasTablas, este crea todas las tablas y tuplas correctamente
