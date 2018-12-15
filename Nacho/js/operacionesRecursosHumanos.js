@@ -149,7 +149,11 @@ eliminarCampania(3);
 	Igual para las condiciones
 */
 
-var modificarCampania = (campos, valores, camposCondiciones, condiciones) => {
+var modificarEmpleado = (campos, valores, camposCondiciones, condiciones) => {
+	operacionesComunes.modificarTupla("Entidad, CampaniaPublicitaria", campos, valores, camposCondiciones, condiciones);
+}
+
+var modificarDepartamento = (campos, valores, camposCondiciones, condiciones) => {
 	operacionesComunes.modificarTupla("Entidad, CampaniaPublicitaria", campos, valores, camposCondiciones, condiciones);
 }
 

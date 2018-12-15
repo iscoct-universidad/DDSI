@@ -10,6 +10,7 @@ Si vais a hacer varios cambios seguidos hacedlos todos de golpe por favor :sweat
 
 **Recursos Humanos**
   * Modificar el mostrar por pantalla de DBMS
+  * Creación de tablas e inserción de tuplas __(Por comprobar)__
   * Operaciones JS
     * Crear Empleado __(Por comprobar)__
     * Modificar Empleado
