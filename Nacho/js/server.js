@@ -74,7 +74,6 @@ var server = http.createServer((req, res) => {
 
 				respuesta += "</ul>";
 
-				//res.writeHead(200, {"Content-Type": "text/plain"}); // para testeo
 				res.writeHead(200, {"Content-Type": "text/html"});
 				res.write(respuesta);
 				res.end();
@@ -95,7 +94,6 @@ var server = http.createServer((req, res) => {
 
 				respuesta += "</ul>";
 
-				//res.writeHead(200, {"Content-Type": "text/plain"}); // para testeo
 				res.writeHead(200, {"Content-Type": "text/html"});
 				res.write(respuesta);
 				res.end();
@@ -138,7 +136,7 @@ var server = http.createServer((req, res) => {
 				++i;
 			}
 
-			camposCondiciones = ["CampaniaPublicitaria.CodEnt = Entidad.CodEnt and Entidad.CodEnt"];
+			camposCondiciones = ["Empleado.CodEnt = Entidad.CodEnt and Entidad.CodEnt"];
 			valoresCondiciones = [params[tam - 1]];
 
 			console.log("Campos que se envían: ", campos);
@@ -184,7 +182,7 @@ var server = http.createServer((req, res) => {
 				++i;
 			}
 
-			camposCondiciones = ["CampaniaPublicitaria.CodEnt = Entidad.CodEnt and Entidad.CodEnt"];
+			camposCondiciones = ["CodDep"];
 			valoresCondiciones = [params[tam - 1]];
 
 			console.log("Campos que se envían: ", campos);
@@ -241,4 +239,4 @@ var server = http.createServer((req, res) => {
 });
 
 server.listen(8084);
-console.log("Servicio HTTP iniciado en el puerto 8081");
+console.log("Servicio HTTP iniciado en el puerto 8084");

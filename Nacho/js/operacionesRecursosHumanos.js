@@ -150,11 +150,11 @@ eliminarCampania(3);
 */
 
 var modificarEmpleado = (campos, valores, camposCondiciones, condiciones) => {
-	operacionesComunes.modificarTupla("Entidad, CampaniaPublicitaria", campos, valores, camposCondiciones, condiciones);
+	operacionesComunes.modificarTupla("Entidad, Empleado", campos, valores, camposCondiciones, condiciones);
 }
 
 var modificarDepartamento = (campos, valores, camposCondiciones, condiciones) => {
-	operacionesComunes.modificarTupla("Entidad, CampaniaPublicitaria", campos, valores, camposCondiciones, condiciones);
+	operacionesComunes.modificarTupla("Departamento", campos, valores, camposCondiciones, condiciones);
 }
 
 /*
