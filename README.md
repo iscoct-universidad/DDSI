@@ -34,10 +34,10 @@ Proyecto de DDSI
     * Eliminar Departamento __(Por comprobar)__  
     * Operaciones adicionales (cursor, tabla Pertenece y demás)
 
-**Pasos a seguir**
- *Una vez configurada bien la base de datos y creado el usuario, por este orden se puede comprobar el buen funcionamiento de estos
- *Comprobamos que con el fichero operacionesTablas.js en Comun/js, al hacer node operacionesTablas.js una vez insertado nuestras tablas y tuplas en crearTodasLasTuplas/crearLasTablas, este crea todas las tablas y tuplas correctamente
- __Mi recomendación es que creeis un fichero operacionesMarketing.js (en vuestro caso con vuestras operacionesX.js) y una vez implementado cada operación siguiendo el modelo de mi fichero, vayais probando debajo de la función que la operación funciona__
- *Vamos creando una a una las operaciones que tenemos que realizar utilizando a ser preferible funciones de Comun/js/operaciones.js y vamos comprobando el buen funcionamiento estas
- *Creamos server.js y vamos probando que las operaciones se conectan bien entre server.js y operaciones.js, para ello en el navegador ponemos localhost:808X/__codigoOperacion(recomendable)__?nombreCampoFormulario1=valor1&...
- *Creamos los html con los formularios
+## Pasos a seguir
+  * Una vez configurada bien la base de datos y creado el usuario, por este orden se puede comprobar el buen funcionamiento de estos
+  * Comprobamos que con el fichero operacionesTablas.js en Comun/js, al hacer node operacionesTablas.js una vez insertado nuestras tablas y tuplas en crearTodasLasTuplas/crearLasTablas, este crea todas las tablas y tuplas correctamente
+  * __Mi recomendación es que creeis un fichero operacionesMarketing.js (en vuestro caso con vuestras operacionesX.js) y una vez implementado cada operación siguiendo el modelo de mi fichero, vayais probando debajo de la función que la operación funciona__
+  * Vamos creando una a una las operaciones que tenemos que realizar utilizando a ser preferible funciones de Comun/js/operaciones.js y vamos comprobando el buen funcionamiento estas
+  * Creamos server.js y vamos probando que las operaciones se conectan bien entre server.js y operaciones.js, para ello en el navegador ponemos localhost:808X/__codigoOperacion(recomendable)__?nombreCampoFormulario1=valor1&...
+  * Creamos los html con los formularios
