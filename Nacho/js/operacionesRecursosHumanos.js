@@ -3,14 +3,6 @@
 const mysql = require('mysql');
 const operacionesComunes = require('../../Comun/js/operaciones');
 
-/*
-	Para crear una campaña primero voy a consultar todos los códigos
-	y voy a sacar el máximo identificador de tal manera que el identificador que utilicemos
-	sea uno mayor al máximo de los CodEnt existentes
-
-	Luego crearemos primero la Entidad y luego la Campaña publicitaria
-*/
-
 var crearEmpleado = (nombre, dni, direccion, telefono, sueldo, estado) => {
 	operacionesComunes.conectarse(function(err, con) {
 		if(err)
@@ -60,18 +52,11 @@ var crearDepartamento = (localizacion, area) => {
 	});
 }
 
-/*
-	Prueba de que crearCampania funciona
-
-crearCampania("K", "K", "K");
-*/
-
 
 /*
 	callback será una función a la que le enviaremos
 	el resultado de la consulta realizada, y este se encargará de tratar con él
 */
-
 var consultarEmpleado = (identificador, callback) => {
 	operacionesComunes.conectarse(function(err, con) {
 		if(err)
@@ -90,20 +75,6 @@ var consultarEmpleado = (identificador, callback) => {
 		});
 	});
 };
-
-/*
-	Prueba de que consultarCampania está bien
-
-var tratamientoConsulta = (consulta) => {
-	var camposValores = consulta[0];
-
-	for(let x in camposValores)
-		console.log(x, ": ", camposValores[x]);
-}
-
-consultarCampania(5, tratamientoConsulta);
-
-*/
 
 var consultarDepartamento = (identificador, callback) => {
 	operacionesComunes.conectarse(function(err, con) {
@@ -134,20 +105,6 @@ var eliminarDepartamento = (identificador) => {
 	operacionesComunes.eliminarTupla("Departamentos", "CodDep", identificador);
 }
 
-/*
-	Prueba de que eliminarCampania funciona correctamente
-
-eliminarCampania(3);
-
-*/
-
-/*
-	Para modificar la campaña habrá que poner CampaniaPublicitaria.x || Entidad.y
-	para poder modificar los campos deseados
-
-	Igual para las condiciones
-*/
-
 var modificarEmpleado = (campos, valores, camposCondiciones, condiciones) => {
 	operacionesComunes.modificarTupla("Empleados", campos, valores, camposCondiciones, condiciones);
 }
@@ -155,17 +112,6 @@ var modificarEmpleado = (campos, valores, camposCondiciones, condiciones) => {
 var modificarDepartamento = (campos, valores, camposCondiciones, condiciones) => {
 	operacionesComunes.modificarTupla("Departamentos", campos, valores, camposCondiciones, condiciones);
 }
-
-/*
-	Prueba de que modificacionCampania funciona
-
-var campos = ["Entidad.Nombre"];
-var valores = "V";
-var camposCondiciones = ["CampaniaPublicitaria.CodEnt = Entidad.CodEnt and CampaniaPublicitaria.Tipo"];
-var condiciones = ["Z"];
-
-modificarCampania(campos, valores, camposCondiciones, condiciones);
-*/
 
 var crearInfProdComp = (nombre, precio, rendimiento, informe, idProducto) => {
 	operacionesComunes.conectarse(function(err, con) {
@@ -201,6 +147,28 @@ var crearInfProdComp = (nombre, precio, rendimiento, informe, idProducto) => {
 	});
 }
 
+
+var consultarPertenece = (identificador, callback) => {
+	operacionesComunes.conectarse(function(err, con) {
+		if(err)
+			console.log("Hubo un error al conectarse con la BD en consultarEmpleado");
+
+		let sql = "SELECT CodEnt FROM Pertenece WHERE CodDep = " + identificador + ";";
+		"DECLARE CURSOR cEmpleados IS		    SELECT Empleados.Nombre, Empleados.DNI FROM Empleados, Pertenece		    WHERE Pertenece.CodDep = 1 AND Pertenece.CodEnt = Empleados.CodEnt;		  NombreEmpleado VARCHAR2(30);		  DNIEmpleado VARCHAR2(9);		BEGIN		  OPEN cEmpleados;		  FETCH cEmpleados INTO NombreEmpleado, DNIEmpleado;		  DBMS_OUTPUT.PUT_LINE('Los empleados pertenecientes al departamento 1 son:');		  WHILE cEmpleados%found LOOP		    DBMS_OUTPUT.PUT_LINE(NombreEmpleado || ' con DNI:' || DNIEmpleado);		    FETCH cEmpleados INTO NombreEmpleado, DNIEmpleado;		  END LOOP;		  CLOSE cEmpleados;		END;"
+
+		con.query(sql, function(err, result) {
+			if(err)
+				console.log("Hubo un error al hacer la consulta del empleado");
+			else
+				console.log("Realizada la consulta del empleado");
+
+			callback(result);
+			con.end();
+		});
+	});
+};
+
+
 module.exports.crearEmpleado = crearEmpleado;
 module.exports.consultarEmpleado = consultarEmpleado;
 module.exports.modificarEmpleado = modificarEmpleado;
@@ -210,3 +178,5 @@ module.exports.crearDepartamento = crearDepartamento;
 module.exports.consultarDepartamento = consultarDepartamento;
 module.exports.modificarDepartamento = modificarDepartamento;
 module.exports.eliminarDepartamento = eliminarDepartamento;
+
+module.exports.consultarPertenece = consultarPertenece;
