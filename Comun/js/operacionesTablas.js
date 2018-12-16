@@ -81,9 +81,11 @@ const crearTodasLasTablas = () => {
 	leer(rutaFran,		"promociona.sql",		crearTabla);
 	leer(rutaFran,		"compara.sql",			crearTabla);
 
-	// Recursos Humanos
+	// Recursos Humanos - SE DEBEN EJECUTAR DESPUÉS DE ENTIDAD
 	leer(rutaNacho,		"empleado.sql",			crearTabla);
 	leer(rutaNacho,		"departamento.sql",	crearTabla);
+
+	// SE DEBE EJECUTAR DESPUÉS DE EMPLEADO Y DEPARTAMENTO
 	leer(rutaNacho,		"pertenece.sql",		crearTabla);
 }
 
@@ -104,8 +106,8 @@ const crearTodasLasTuplas = () => {
 	leer(rutaNacho,		"tuplasPertenece.sql",		crearTupla);
 }
 
-eliminarTodasLasTablas();
-crearTodasLasTablas();
+//eliminarTodasLasTablas();
+//crearTodasLasTablas();
 crearTodasLasTuplas();
 
 /*

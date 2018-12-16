@@ -11,6 +11,7 @@
 const http = require('http');
 const url = require('url');
 const operaciones = require('./operacionesRecursosHumanos');
+const operacionesComunes = require('../../Comun/js/operaciones');
 
 var server = http.createServer((req, res) => {
 	var uri = url.parse(req.url, true);
@@ -119,7 +120,13 @@ var server = http.createServer((req, res) => {
 			let i;
 			let tamQuery = query.length;
 
-			for(i = 1; i < tam - 1; ++i)
+			// Modificar nombre de Entidad
+			//campos.push("Entidad.Nombre");
+			//valores.push(params[1]);
+
+			operacionesComunes.modificarTupla("Entidad", ["Nombre"], [params[1]], ["CodEnt"], [params[tam-1]]);
+
+			for(i = 2; i < tam - 1; ++i)
 				if(params[i] != "") {
 					valores.push(params[i]);
 					paramsValidos.push(i);
@@ -136,7 +143,7 @@ var server = http.createServer((req, res) => {
 				++i;
 			}
 
-			camposCondiciones = ["Empleado.CodEnt = Entidad.CodEnt and Entidad.CodEnt"];
+			camposCondiciones = ["Empleados.CodEnt"];
 			valoresCondiciones = [params[tam - 1]];
 
 			console.log("Campos que se envían: ", campos);

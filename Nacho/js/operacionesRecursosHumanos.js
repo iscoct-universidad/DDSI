@@ -28,8 +28,8 @@ var crearEmpleado = (nombre, dni, direccion, telefono, sueldo, estado) => {
 
 			operacionesComunes.insertarTupla("Entidad", campos, valores);
 
-			campos = ["CodEnt", "Nombre", "DNI", "Direccion", "Telefono", "Sueldo", "Estado"];
-			valores = [identificador, nombre, dni, direccion, telefono, sueldo, estado];
+			campos = ["CodEnt", "DNI", "Direccion", "Telefono", "Sueldo", "Estado"];
+			valores = [identificador, dni, direccion, telefono, sueldo, estado];
 
 			operacionesComunes.insertarTupla("Empleados", campos, valores);
 
@@ -77,7 +77,7 @@ var consultarEmpleado = (identificador, callback) => {
 		if(err)
 			console.log("Hubo un error al conectarse con la BD en consultarEmpleado");
 
-		let sql = "SELECT * FROM Empleados WHERE CodEnt = " + identificador + ";";
+		let sql = "SELECT Entidad.*, Empleados.* FROM Empleados, Entidad WHERE Entidad.CodEnt = Empleados.CodEnt AND Entidad.CodEnt = " + identificador + ";";
 
 		con.query(sql, function(err, result) {
 			if(err)
@@ -149,7 +149,7 @@ eliminarCampania(3);
 */
 
 var modificarEmpleado = (campos, valores, camposCondiciones, condiciones) => {
-	operacionesComunes.modificarTupla("Entidad, Empleados", campos, valores, camposCondiciones, condiciones);
+	operacionesComunes.modificarTupla("Empleados", campos, valores, camposCondiciones, condiciones);
 }
 
 var modificarDepartamento = (campos, valores, camposCondiciones, condiciones) => {
@@ -201,12 +201,6 @@ var crearInfProdComp = (nombre, precio, rendimiento, informe, idProducto) => {
 	});
 }
 
-/*
-	Prueba de que crearInfProdComp funciona
-
-crearInfProdComp("A", "100", "0.4", "Es mejor el nuestro", "0");
-*/
-
 module.exports.crearEmpleado = crearEmpleado;
 module.exports.consultarEmpleado = consultarEmpleado;
 module.exports.modificarEmpleado = modificarEmpleado;
@@ -214,5 +208,5 @@ module.exports.eliminarEmpleado = eliminarEmpleado;
 
 module.exports.crearDepartamento = crearDepartamento;
 module.exports.consultarDepartamento = consultarDepartamento;
-module.exports.modificarEmpleado = modificarEmpleado;
-module.exports.eliminarEmpleado = eliminarEmpleado;
+module.exports.modificarDepartamento = modificarDepartamento;
+module.exports.eliminarDepartamento = eliminarDepartamento;

@@ -31,6 +31,8 @@ Proyecto de DDSI
 
 ## Cosas por hacer
 **Comunes**
+  * Cursor
+  * Disparador
   * Función para mostrar las tablas
   * Añadir botón de volver tras realizar una solicitud
   * Mejorar la presentación de los HTML __(opcional)__
@@ -41,11 +43,11 @@ Proyecto de DDSI
   * Creación de tablas e inserción de tuplas :heavy_check_mark:
   * Operaciones JS
     * Crear Empleado :heavy_check_mark:
-    * Modificar Empleado __(Por comprobar)__
+    * Modificar Empleado __(Problema con la operación modificarTupla)__
     * Consultar Empleado :heavy_check_mark:
-    * Eliminar Empleado __(Por comprobar)__  
+    * Eliminar Empleado :heavy_check_mark:
     * Crear Departamento :heavy_check_mark:
     * Modificar Departamento __(Por comprobar)__
     * Consultar Departamento :heavy_check_mark:
-    * Eliminar Departamento __(Por comprobar)__  
+    * Eliminar Departamento :heavy_check_mark:
     * Operaciones adicionales (cursor, tabla Pertenece y demás)
