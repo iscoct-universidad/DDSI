@@ -7,6 +7,8 @@
 	1005: Modificar departamento
 	1006: Eliminar empleado
 	1007: Eliminar departamento
+	1008: Añadir empleado a departamento
+	1009: Listar empleados de un departamento
 */
 const http = require('http');
 const url = require('url');
@@ -101,13 +103,6 @@ var server = http.createServer((req, res) => {
 			});
 		break;
 
-		/*
-			Los parámetros deben estar en el orden
-				Campos a modificar, valores a dar, campos de las condiciones precedido
-					de condiciones especiales (ver modificarTupla), valores de los campos
-					de las condiciones
-			Ejemplo de url: http://localhost:8081/1002/1/1/Nombre/B/CampaniaPublicitaria.CodEnt=Entidad.CodEnt%20and%20Entidad.CodEnt/1
-		*/
 		case 1004:	// Modificar empleado
 			console.log(solicitud + "modificar un empleado");
 
@@ -119,10 +114,6 @@ var server = http.createServer((req, res) => {
 			let paramsValidos = [];
 			let i;
 			let tamQuery = query.length;
-
-			// Modificar nombre de Entidad
-			//campos.push("Entidad.Nombre");
-			//valores.push(params[1]);
 
 			operacionesComunes.modificarTupla("Entidad", ["Nombre"], [params[1]], ["CodEnt"], [params[tam-1]]);
 
@@ -159,45 +150,46 @@ var server = http.createServer((req, res) => {
 			res.write(respuesta);
 			res.end();
 		break;
-/*	Hay que cambiar el nombre de cada variable para que no choque con las anteriores
+
+
 		case 1005:	// Modificar departamento
 			console.log(solicitud + "modificar un empleado");
 
-			let tam = params.length;
-			let campos = [];
-			let valores = [];
-			let camposCondiciones;
-			let valoresCondiciones = [];
-			let paramsValidos = [];
-			let i;
-			let tamQuery = query.length;
+			let tam2 = params.length;
+			let campos2 = [];
+			let valores2 = [];
+			let camposCondiciones2;
+			let valoresCondiciones2 = [];
+			let paramsValidos2 = [];
+			let i2;
+			let tamQuery2 = query.length;
 
-			for(i = 1; i < tam - 1; ++i)
-				if(params[i] != "") {
-					valores.push(params[i]);
-					paramsValidos.push(i);
+			for(i2 = 1; i2 < tam2 - 1; ++i2)
+				if(params[i2] != "") {
+					valores2.push(params[i2]);
+					paramsValidos2.push(i2);
 				}
 
-			let tamValidos = paramsValidos.length;
+			let tamValidos2 = paramsValidos2.length;
 
-			i = 1;
+			i2 = 1;
 
 			for(let x in query) {
-				if(paramsValidos.includes(i))
-					campos.push(x);
+				if(paramsValidos2.includes(i2))
+					campos2.push(x);
 
-				++i;
+				++i2;
 			}
 
-			camposCondiciones = ["CodDep"];
-			valoresCondiciones = [params[tam - 1]];
+			camposCondiciones2 = ["CodDep"];
+			valoresCondiciones2 = [params[tam2 - 1]];
 
-			console.log("Campos que se envían: ", campos);
-			console.log("Valores que se envían: ", valores);
-			console.log("Campos de las condiciones: ", camposCondiciones);
-			console.log("Valores de las condiciones: ", valoresCondiciones);
+			console.log("Campos que se envían: ", campos2);
+			console.log("Valores que se envían: ", valores2);
+			console.log("Campos de las condiciones: ", camposCondiciones2);
+			console.log("Valores de las condiciones: ", valoresCondiciones2);
 
-			operaciones.modificarDepartamento(campos, valores, camposCondiciones, valoresCondiciones);
+			operaciones.modificarDepartamento(campos2, valores2, camposCondiciones2, valoresCondiciones2);
 
 			respuesta += "Operación realizada con éxito";
 
@@ -205,7 +197,7 @@ var server = http.createServer((req, res) => {
 			res.write(respuesta);
 			res.end();
 		break;
-*/
+
 		case 1006:	// Eliminar empleado
 			console.log(solicitud + "eliminar un empleado");
 			operaciones.eliminarEmpleado(params[1]);
@@ -226,10 +218,30 @@ var server = http.createServer((req, res) => {
 			res.end();
 		break;
 
+		case 1009:	// Listar empleados de un departamento
+			console.log(solicitud + "listar empleados de un departamento");
+
+			operaciones.consultarPertenece(params[1], function(consulta) {
+				var camposValores = consulta[0];
+
+				console.log("Consulta: ", consulta);
+				respuesta += "Los empleado pertenecientes al departamento son:<br/><ul>";
+
+				for(let x in camposValores)
+					respuesta += "<li>" + x + ": " + camposValores[x] + "</li>";
+
+				respuesta += "</ul>";
+
+				res.writeHead(200, {"Content-Type": "text/html"});
+				res.write(respuesta);
+				res.end();
+			});
+		break;
+
 		/*
 			Los parámetros deben de seguir el orden,
 				Nombre, Precio, Rendimiento, Informe, IdProducto
-		*/
+
 		case 1004:
 			console.log(solicitud + "crear un informe de un producto competidor");
 			console.log(params);
@@ -242,6 +254,7 @@ var server = http.createServer((req, res) => {
 		break;
 		default:
 			console.log("Código de operación no válido");
+		*/
 	}
 });
 
