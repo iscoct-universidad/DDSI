@@ -52,4 +52,5 @@ Proyecto de DDSI
     * Eliminar Departamento :heavy_check_mark:
     * Añadir empleado a departamento :heavy_check_mark:
     * Eliminar empleado de departamento
-    * Listar empleados de un departamento
+    * Listar empleados de un departamento (cursor)
+    * Disparador
