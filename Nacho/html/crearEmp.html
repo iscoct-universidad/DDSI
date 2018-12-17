@@ -72,15 +72,45 @@
 		<div class="p-3 text-white">
 			<p class="font-weight-bold text-center Merriweather h3">Crear empleado</p>
 
-			<p>Introduzca los datos del empleado</p>
+			<h5>Introduzca los datos del empleado</h5>
 			<form action="http://localhost:8084/1000" method="get">
-				Nombre: 	 <input type="text" name="nombre"/><br/>
-				DNI:			 <input type="text" name="dni"/><br/>
-				Dirección: <input type="text" name="direccion"/><br/>
-				Teléfono:	 <input type="text" name="telefono"/><br/>
-				Sueldo:	 	 <input type="text" name="sueldo"/><br/>
-				Estado:	   <input type="text" name="estado"/><br/>
-				<input type="submit" value="Enviar"/>
+				<div class="form-group">
+					<label for="nombre">Nombre</label>
+					<input class="form-control" id="nombre"
+								 placeholder="Paco" type="text" name="nombre"/><br/>
+
+				  <label for="dni">DNI</label>
+			 		<input class="form-control" id="dni"
+			 					 placeholder="00000000A" type="text" name="dni"/><br/>
+
+				 <label for="direccion">Dirección</label>
+		 		 <input class="form-control" id="direccion"
+								placeholder="Calle Periodista Daniel Saucedo Aranda"
+								type="text" name="direccion"/><br/>
+
+				 <label for="telefono">Teléfono</label>
+				 <input class="form-control" id="telefono"
+				 			  placeholder="111111111" type="text" name="telefono"/><br/>
+
+				 <label for="sueldo">Sueldo</label>
+				 <input class="form-control" id="sueldo"
+							 placeholder="1000" type="text" name="sueldo"/><br/>
+
+				 <label for="estado">Estado</label>
+				 <input class="form-control" id="nombre"
+				 			 placeholder="N" type="text" name="estado"/><br/>
+				</div>
+				<button type="submit" class="btn btn-primary" value="Enviar">Enviar</button>
 			</form>
 	</body>
 </html>
+
+<!--
+Nombre: 	 <input type="text" name="nombre"/><br/>
+DNI:			 <input type="text" name="dni"/><br/>
+Dirección: <input type="text" name="direccion"/><br/>
+Teléfono:	 <input type="text" name="telefono"/><br/>
+Sueldo:	 	 <input type="text" name="sueldo"/><br/>
+Estado:	   <input type="text" name="estado"/><br/>
+<input type="submit" value="Enviar"/>
+-->

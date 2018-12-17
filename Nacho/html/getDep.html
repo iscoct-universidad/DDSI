@@ -72,10 +72,22 @@
 		<div class="p-3 text-white">
 			<p class="font-weight-bold text-center Merriweather h3">Consultar departamento</p>
 
+			<h5>Introduzca el código del departamento a consultar</h5></br>
 			<form action="http://localhost:8084/1003" method="get">
-				Introduzca el código del departamento a consultar:
-				<input type="text" name="idEmp"/>
-				<input type="submit" value="Enviar"/>
+				<div class="form-group">
+					<input class="form-control" id="idDep"
+								 placeholder="0" type="text"
+								 name="idDep"/><br/>
+				</div>
+				<button type="submit" class="btn btn-primary" value="Enviar">Enviar</button>
 			</form>
 	</body>
 </html>
+
+<!--
+<form action="http://localhost:8084/1003" method="get">
+	Introduzca el código del departamento a consultar:
+	<input type="text" name="idEmp"/>
+	<input type="submit" value="Enviar"/>
+</form>
+-->

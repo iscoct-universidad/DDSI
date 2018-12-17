@@ -72,6 +72,30 @@
 		<div class="p-3 text-white">
 			<p class="font-weight-bold text-center Merriweather h3">Modificar departamento</p>
 
+			<h5>Introduzca los datos del departamento</h5></br>
+			<h6>Los campos vacíos se quedarán al valor que tenían anteriormente</h6>
+			<form action="http://localhost:8084/1005" method="get">
+				<div class="form-group">
+					<label for="localizacion">Localizacion</label>
+					<input class="form-control" id="localizacion"
+								 placeholder="Calle Periodista Daniel Saucedo Aranda" type="text"
+								 name="localizacion"/><br/>
+
+					<label for="area">Área</label>
+					<input class="form-control" id="area" placeholder="Granada" type="text"
+								 name="area"/><br/>
+
+					<label for="identificador">Identificador</label>
+					<input class="form-control" id="identificador"
+					 		 	 placeholder="1" type="text" name="identificador"/><br/>								 
+				</div>
+				<button type="submit" class="btn btn-primary" value="Enviar">Enviar</button>
+			</form>
+	</body>
+</html>
+
+<!--
+
 			<h4>Introduzca los datos del departamento</h4>
 	    <p>Los campos vacíos se quedarán al valor que tenían anteriormente</p>
 			<form action="http://localhost:8084/1005" method="get">
@@ -80,5 +104,4 @@
 				Identificador: 	 <input type="text" name="idEnt"/><br/>
 				<input type="submit" value="Enviar"/>
 			</form>
-	</body>
-</html>
+-->
