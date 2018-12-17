@@ -1,5 +1,5 @@
 CREATE TABLE ProductoCompetidor (
-  CodProdComp   VARCHAR(9)	PRIMARY KEY,
+  CodProdComp   INT		PRIMARY KEY,
   Precio        REAL  		NOT NULL,
   Nombre        VARCHAR(50)	NOT NULL,
   Rendimiento   REAL

@@ -1,4 +1,6 @@
 CREATE TABLE Promociona (
-  CodEnt          VARCHAR(9) NOT NULL REFERENCES CampaniaPublicitaria(CodEnt),
-  CodProd         VARCHAR(9) NOT NULL REFERENCES Producto(CodProd)
+  CodEnt          INT NOT NULL,
+  CodProd         INT NOT NULL,
+  foreign key (CodEnt) references CampaniaPublicitaria(CodEnt),
+  foreign key (CodProd) references Producto(CodProd)
 );
