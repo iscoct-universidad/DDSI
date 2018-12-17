@@ -147,6 +147,23 @@ var crearInfProdComp = (nombre, precio, rendimiento, informe, idProducto) => {
 	});
 }
 
+var crearPertenece = (idEnt, idDep) => {
+	operacionesComunes.conectarse(function(err, con) {
+		if(err)
+			console.log("Hubo un error al conectarse con la BD en crearPertenece");
+
+		let sql= "INSERT INTO Pertenece VALUES ('" + idEnt + "', '" + idDep + "', CONVERT(CURRENT_DATE(), CHAR(10)));"
+
+		con.query(sql, function(err, result) {
+			if(err)
+				console.log("Hubo un error al insertar en Pertenece");
+			else
+				console.log("Insertada tupla en Pertenece");
+
+			con.end();
+		});
+	});
+}
 
 var consultarPertenece = (identificador, callback) => {
 	operacionesComunes.conectarse(function(err, con) {
@@ -179,4 +196,5 @@ module.exports.consultarDepartamento = consultarDepartamento;
 module.exports.modificarDepartamento = modificarDepartamento;
 module.exports.eliminarDepartamento = eliminarDepartamento;
 
+module.exports.crearPertenece = crearPertenece;
 module.exports.consultarPertenece = consultarPertenece;

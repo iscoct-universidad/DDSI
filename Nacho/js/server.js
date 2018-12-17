@@ -218,6 +218,18 @@ var server = http.createServer((req, res) => {
 			res.end();
 		break;
 
+		case 1008:	// Añadir empleado a departamento
+			console.log(solicitud + "añadir empleado a departamento");
+			operaciones.crearPertenece(params[1], params[2]);
+
+			respuesta += "Operación realizada con éxito";
+
+
+			res.writeHead(200, {"Content-Type": "text/html"});
+			res.write(respuesta);
+			res.end();
+		break;
+
 		case 1009:	// Listar empleados de un departamento
 			console.log(solicitud + "listar empleados de un departamento");
 

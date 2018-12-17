@@ -50,4 +50,6 @@ Proyecto de DDSI
     * Modificar Departamento __(Problema con la operación modificarTupla)__
     * Consultar Departamento :heavy_check_mark:
     * Eliminar Departamento :heavy_check_mark:
-    * Operaciones adicionales (cursor, tabla Pertenece y demás)
+    * Añadir empleado a departamento :heavy_check_mark:
+    * Eliminar empleado de departamento
+    * Listar empleados de un departamento
