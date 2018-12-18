@@ -168,14 +168,15 @@ var crearPertenece = (idEnt, idDep) => {
 var consultarPertenece = (identificador, callback) => {
 	operacionesComunes.conectarse(function(err, con) {
 		if(err)
-			console.log("Hubo un error al conectarse con la BD en consultarEmpleado");
+			console.log("Hubo un error al conectarse con la BD en consultarPertenece");
 
-		let sql = "SELECT CodEnt FROM Pertenece WHERE CodDep = " + identificador + ";";
-		"DECLARE CURSOR cEmpleados IS		    SELECT Empleados.Nombre, Empleados.DNI FROM Empleados, Pertenece		    WHERE Pertenece.CodDep = 1 AND Pertenece.CodEnt = Empleados.CodEnt;		  NombreEmpleado VARCHAR2(30);		  DNIEmpleado VARCHAR2(9);		BEGIN		  OPEN cEmpleados;		  FETCH cEmpleados INTO NombreEmpleado, DNIEmpleado;		  DBMS_OUTPUT.PUT_LINE('Los empleados pertenecientes al departamento 1 son:');		  WHILE cEmpleados%found LOOP		    DBMS_OUTPUT.PUT_LINE(NombreEmpleado || ' con DNI:' || DNIEmpleado);		    FETCH cEmpleados INTO NombreEmpleado, DNIEmpleado;		  END LOOP;		  CLOSE cEmpleados;		END;"
+		let sql = "SET @listaEmpleados = \"\";" +
+						  "CALL cursorRH(@listaEmpleados);" +
+						  "SELECT @listaEmpleados;";
 
 		con.query(sql, function(err, result) {
 			if(err)
-				console.log("Hubo un error al hacer la consulta del empleado");
+				console.log("Hubo un error al hacer la consulta de la lista de empleados");
 			else
 				console.log("Realizada la consulta del empleado");
 
@@ -185,6 +186,42 @@ var consultarPertenece = (identificador, callback) => {
 	});
 };
 
+
+/* Definir cursor
+let sql = "DELIMITER $$" +
+
+					"CREATE PROCEDURE cursorRH (INOUT listaEmpleados varchar(4000))" +
+					"BEGIN" +
+
+						"DECLARE NombreEmpleado VARCHAR(30);" +
+						"DECLARE DNIEmpleado VARCHAR(9);" +
+						"DECLARE fin INTEGER DEFAULT 0;"
+
+						"DECLARE cEmpleados CURSOR FOR" +
+							"SELECT Entidad.Nombre, Empleados.DNI FROM Empleados, Pertenece, Entidad" +
+							"WHERE Pertenece.CodDep = '1' AND Pertenece.CodEnt = Empleados.CodEnt" +
+																					 "AND Entidad.CodEnt = Empleados.CodEnt;" +
+
+						"DECLARE CONTINUE HANDLER FOR NOT FOUND SET fin = TRUE;" +
+
+						"OPEN cEmpleados;" +
+
+						"bucle: LOOP" +
+							"FETCH cEmpleados INTO NombreEmpleado, DNIEmpleado;" +
+
+							"IF fin = 1 THEN" +
+								"LEAVE bucle;" +
+							"END IF;" +
+
+							"SET listaEmpleados = CONCAT(NombreEmpleado, \" con DNI: \", DNIEmpleado);" +
+						"END LOOP;" +
+
+
+						"CLOSE cEmpleados;" +
+					"END$$" +
+
+					"DELIMITER ;";
+*/
 
 module.exports.crearEmpleado = crearEmpleado;
 module.exports.consultarEmpleado = consultarEmpleado;

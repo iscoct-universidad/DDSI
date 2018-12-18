@@ -1,11 +1,8 @@
 /* Disparador de recursos humanos - Ignacio Vellido Expósito */
 
-/* Modificar departamento de un empleado si se inserta uno nuevo que lo incluye */
+-- Aumentar salario a los empleados que entren en el departamento 1 --
 
-CREATE OR REPLACE TRIGGER modificarDepartamento
-BEFORE INSERT ON Pertenece
+CREATE TRIGGER subirSueldo BEFORE INSERT ON Pertenece
 FOR EACH ROW
-BEGIN
-  DELETE FROM Pertenece
-  WHERE CodEnt = :new.CodEnt AND Fecha = :new.Fecha;
-END;
+  UPDATE Empleados SET Sueldo = Sueldo + 500
+  WHERE CodEnt = NEW.CodEnt AND NEW.CodDep = '1';

@@ -8,7 +8,7 @@
 	1006: Eliminar empleado
 	1007: Eliminar departamento
 	1008: Añadir empleado a departamento
-	1009: Listar empleados de un departamento
+	1009: Listar empleados de un departamento (el 1) (cursor)
 */
 const http = require('http');
 const url = require('url');
@@ -237,7 +237,7 @@ var server = http.createServer((req, res) => {
 				var camposValores = consulta[0];
 
 				console.log("Consulta: ", consulta);
-				respuesta += "Los empleado pertenecientes al departamento son:<br/><ul>";
+				respuesta += "Los empleado pertenecientes al departamento 1 son:<br/><ul>";
 
 				for(let x in camposValores)
 					respuesta += "<li>" + x + ": " + camposValores[x] + "</li>";
@@ -249,24 +249,6 @@ var server = http.createServer((req, res) => {
 				res.end();
 			});
 		break;
-
-		/*
-			Los parámetros deben de seguir el orden,
-				Nombre, Precio, Rendimiento, Informe, IdProducto
-
-		case 1004:
-			console.log(solicitud + "crear un informe de un producto competidor");
-			console.log(params);
-			operaciones.crearInfProdComp(params[1], params[2], params[3], params[4], params[5]);
-			respuesta += "Operación realizada con éxito";
-
-			res.writeHead(200, {"Content-Type": "text/html"});
-			res.write(respuesta);
-			res.end();
-		break;
-		default:
-			console.log("Código de operación no válido");
-		*/
 	}
 });
 
