@@ -1,16 +1,36 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
+		<!-- Bootstrap, quitar para volver a puro HTML -->
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<!-- Fuente -->
+		<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+		<link href="./estilo.css" rel="stylesheet"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
 	<body>
-		<p>Bienvenido al departamento de marketing</p>
-		<p>¿Que operación quiere realizar?</p>
-		<ul>
-			<li><a href="crearCamp.html">Crear campaña publicitaria</a></li>
-			<li><a href="consultarCamp.html">Consultar campaña publicitaria</a></li>
-			<li><a href="eliminarCamp.html">Eliminar campaña publicitaria</a></li>
-			<li><a href="modificarCamp.html">Modificar campaña publicitaria</a></li>
-			<li><a href="crearInf.html">Crear informe sobre producto competidor</a></li>
-		</ul>
+		<div id="cabecera"></div>
+		<script src="lecturaCabecera.js"></script>
+		
+		<!-- Contenido de la página -->
+		<div class="p-3 text-white">
+			<p class="font-weight-bold text-center Merriweather h3">MARKETING</p>
+
+			<!-- Por modificar -->
+			<p>Le doy la bienvenida al departamento de marketing. Seleccione la operación que desea</p>
+			<ul>
+				<h2>Gestión de las campañas publicitarias</h2>
+				<li><a href="crearCamp.html">Crear campaña publicitaria</a></li>
+				<li><a href="consultarCamp.html">Consultar campaña publicitaria</a></li>
+				<li><a href="eliminarCamp.html">Eliminar campaña publicitaria</a></li>
+				<li><a href="modificarCamp.html">Modificar campaña publicitaria</a></li>
+				
+				</br>
+
+				<h2>Gestión de comparación de productos entre empresas</h2>
+				<li><a href="crearInf.html">Crear informe sobre producto competidor</a></li>
+				</li>
+			</ul>
+		</div>
 	</body>
 </html>
