@@ -170,13 +170,13 @@ var consultarPertenece = (identificador, callback) => {
 		if(err)
 			console.log("Hubo un error al conectarse con la BD en consultarPertenece");
 
-		let sql = "SET @listaEmpleados = \"\";" +
-						  "CALL cursorRH(@listaEmpleados);" +
+		let sql = //"SET @listaEmpleados = \"\";" +
+						  //"CALL cursorRH(@listaEmpleados);" +
 						  "SELECT @listaEmpleados;";
 
 		con.query(sql, function(err, result) {
 			if(err)
-				console.log("Hubo un error al hacer la consulta de la lista de empleados");
+				console.log("Hubo un error al hacer la consulta de la lista de pertenece");
 			else
 				console.log("Realizada la consulta del empleado");
 
