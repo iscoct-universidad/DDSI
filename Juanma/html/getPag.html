@@ -11,26 +11,19 @@
 	<body>
 		<div id="cabecera"></div>
 		<script src="lecturaCabecera.js"></script>
-
+		
 		<!-- Contenido de la página -->
 		<div class="p-3 text-white">
-			<p class="font-weight-bold text-center Merriweather h3">RECURSOS HUMANOS</p>
+			<p class="font-weight-bold text-center Merriweather h3">Consultar pago</p>
 
-			<!-- Por modificar -->
-			<p>Bienvenido al departamento de finanzas. ¿Que operación quiere realizar?</p>
-			<ul>
-				<h2>Gestión de empleados</h2>
-				<li><a href="crearIng.html">DRegistrar un ingreso</a></li>
-				<li><a href="getIng.html">Consultar un ingreso</a></li>
-				<li><a href="crearPag.html">Registrar un pago</a></li>
-				<li><a href="getPag.html">Consultar un pago</a></li>
-				<li><a href="delPag.html">Cancelar un pago</a></li>
-				</br>
-
-				<h2>Operaciones adicionales</h2>
-				<li><a href="cursor.html">Listar los gestores de finanzas de la empresa</a>
-				</li>
-			</ul>
-		</div>
+			<h5>Introduzca el código del pago a consultar</h5></br>
+			<form action="http://localhost:8083/1003" method="get">
+				<div class="form-group">
+					<input class="form-control" id="idEmp"
+								 placeholder="0" type="text"
+								 name="idEmp"/><br/>
+				</div>
+				<button type="submit" class="btn btn-primary" value="Enviar">Enviar</button>
+			</form>
 	</body>
 </html>
