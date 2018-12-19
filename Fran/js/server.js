@@ -135,6 +135,9 @@ var server = http.createServer((req, res) => {
 		break;
 		default:
 			console.log("Código de operación no válido");
+			
+			respuesta += "Se ha introducido un código de operación erróneo"
+			devolverRespuesta(res, respuesta);
 	}
 });
 
