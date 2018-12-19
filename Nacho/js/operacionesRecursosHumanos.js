@@ -105,12 +105,18 @@ var eliminarDepartamento = (identificador) => {
 	operacionesComunes.eliminarTupla("Departamentos", "CodDep", identificador);
 }
 
-var modificarEmpleado = (campos, valores, camposCondiciones, condiciones) => {
-	operacionesComunes.modificarTupla("Empleados", campos, valores, camposCondiciones, condiciones);
+var modificarEmpleado = (campos, valores, camposCondiciones, condiciones, callback) => {
+	operacionesComunes.modificarTupla("Entidad, Empleados", campos, valores, camposCondiciones, condiciones, function(err, result) {
+		if (callback != undefined)
+			callback(err, result);
+	}) ;
 }
 
 var modificarDepartamento = (campos, valores, camposCondiciones, condiciones) => {
-	operacionesComunes.modificarTupla("Departamentos", campos, valores, camposCondiciones, condiciones);
+	operacionesComunes.modificarTupla("Departamentos", campos, valores, camposCondiciones, condiciones, function(err, result) {
+		if (callback != undefined)
+			callback(err, result);
+	}) ;
 }
 
 var crearInfProdComp = (nombre, precio, rendimiento, informe, idProducto) => {

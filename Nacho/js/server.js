@@ -73,41 +73,45 @@ var server = http.createServer((req, res) => {
 			operaciones.consultarEmpleado(params[1], function(consulta) {
 				var camposValores = consulta[0];
 
-				console.log("Consulta: ", consulta);
-				respuesta += "El empleado consultado contiene estos valores<br/><ul>";
+				if (consulta.length > 0){
+					var camposValores = consulta[0];
 
-				for(let x in camposValores)
-					respuesta += "<li>" + x + ": " + camposValores[x] + "</li>";
+					console.log("Consulta: ", consulta);
+					respuesta += "El empleado consultado contiene estos valores<br/><ul>";
 
-				respuesta += "</ul>";
+					for(let x in camposValores)
+						respuesta += "<li>" + x + ": " + camposValores[x] + "</li>";
 
-				//devolverRespuesta(res, respuesta);
+					respuesta += "</ul>";
+				}
+				else {
+					respuesta += "Ha introducido un identificador que no se encuentra en la BD";
+				}
 
-				res.writeHead(200, {"Content-Type": "text/html"});
-				res.write(respuesta);
-				res.end();
-			});
+				devolverRespuesta(res, respuesta);			});
 		break;
 
 		case 1003:	// Consultar departamento
 			console.log(solicitud + "consultar un departamento");
 
 			operaciones.consultarDepartamento(params[1], function(consulta) {
-				var camposValores = consulta[0];
 
-				console.log("Consulta: ", consulta);
-				respuesta += "El departamento consultado contiene estos valores<br/><ul>";
+				if (consulta.length > 0){
+					var camposValores = consulta[0];
 
-				for(let x in camposValores)
-					respuesta += "<li>" + x + ": " + camposValores[x] + "</li>";
+					console.log("Consulta: ", consulta);
+					respuesta += "El departamento consultado contiene estos valores<br/><ul>";
 
-				respuesta += "</ul>";
+					for(let x in camposValores)
+						respuesta += "<li>" + x + ": " + camposValores[x] + "</li>";
 
-				//devolverRespuesta(res, respuesta);
+					respuesta += "</ul>";
+				}
+				else {
+					respuesta += "Ha introducido un identificador que no se encuentra en la BD";
+				}
 
-				res.writeHead(200, {"Content-Type": "text/html"});
-				res.write(respuesta);
-				res.end();
+				devolverRespuesta(res, respuesta);
 			});
 		break;
 
@@ -150,15 +154,16 @@ var server = http.createServer((req, res) => {
 			console.log("Campos de las condiciones: ", camposCondiciones);
 			console.log("Valores de las condiciones: ", valoresCondiciones);
 
-			operaciones.modificarEmpleado(campos, valores, camposCondiciones, valoresCondiciones);
+			operaciones.modificarEmpleado(campos, valores, camposCondiciones, valoresCondiciones, function(err, result) {	// CAMBIAR PARA QUE MODIFIQUE ENTIDAD !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				if (err)
+					respuesta += "No se insertó ningún campo a modificar";
+				else if (result.affectRows == 0)
+					respuesta += "Introdujo un identificador queno se encuentra en la BD";
+				else
+					respuesta += "No se insertó ningún campo a modificar";
 
-			respuesta += "Operación realizada con éxito";
-
-			//devolverRespuesta(res, respuesta);
-
-			res.writeHead(200, {"Content-Type": "text/html"});
-			res.write(respuesta);
-			res.end();
+					devolverRespuesta(res, respuesta);
+			});
 		break;
 
 
@@ -199,37 +204,32 @@ var server = http.createServer((req, res) => {
 			console.log("Campos de las condiciones: ", camposCondiciones2);
 			console.log("Valores de las condiciones: ", valoresCondiciones2);
 
-			operaciones.modificarDepartamento(campos2, valores2, camposCondiciones2, valoresCondiciones2);
+			operaciones.modificarDepartamento(campos2, valores2, camposCondiciones2, valoresCondiciones2, function(err, result) {
+				if (err)
+					respuesta += "No se insertó ningún campo a modificar";
+				else if (result.affectRows == 0)
+					respuesta += "Introdujo un identificador que no se encuentra en la BD";
+				else
+					respuesta += "No se insertó ningún campo a modificar";
 
-			respuesta += "Operación realizada con éxito";
-
-			//devolverRespuesta(res, respuesta);
-
-			res.writeHead(200, {"Content-Type": "text/html"});
-			res.write(respuesta);
-			res.end();
+					devolverRespuesta(res, respuesta);
+			});
 		break;
 
 		case 1006:	// Eliminar empleado
 			console.log(solicitud + "eliminar un empleado");
 			operaciones.eliminarEmpleado(params[1]);
-			respuesta += "Operación realizada con éxito";
+			respuesta += "Operación realizada con éxito, la tupla se eliminó correctamente";
 
-			res.writeHead(200, {"Content-Type": "text/html"});
-			res.write(respuesta);
-			res.end();
+			devolverRespuesta(res, respuesta);
 		break;
 
 		case 1007:	// Eliminar departamento
 			console.log(solicitud + "eliminar un departamento");
 			operaciones.eliminarDepartamento(params[1]);
-			respuesta += "Operación realizada con éxito";
+			respuesta += "Operación realizada con éxito, la tupla se eliminó correctamente";
 
-			//devolverRespuesta(res, respuesta);
-
-			res.writeHead(200, {"Content-Type": "text/html"});
-			res.write(respuesta);
-			res.end();
+			devolverRespuesta(res, respuesta);
 		break;
 
 		case 1008:	// Añadir empleado a departamento
@@ -238,11 +238,7 @@ var server = http.createServer((req, res) => {
 
 			respuesta += "Operación realizada con éxito";
 
-			//devolverRespuesta(res, respuesta);
-
-			res.writeHead(200, {"Content-Type": "text/html"});
-			res.write(respuesta);
-			res.end();
+			devolverRespuesta(res, respuesta);
 		break;
 
 		case 1009:	// Listar empleados de un departamento
@@ -259,11 +255,7 @@ var server = http.createServer((req, res) => {
 
 				respuesta += "</ul>";
 
-				//devolverRespuesta(res, respuesta);
-
-				res.writeHead(200, {"Content-Type": "text/html"});
-				res.write(respuesta);
-				res.end();
+				devolverRespuesta(res, respuesta);
 			});
 		break;
 	}
