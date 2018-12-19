@@ -17,7 +17,7 @@ const leer = (ruta, nomFichero) => {
 		fs.readFile(ruta + nomFichero, 'utf-8', function(err, data) {
 			if(err)
 				reject("Hubo un error al leer " + ruta + nomFichero);
-				
+
 			//console.log("Datos: ", data);
 
 			resolve(data);
@@ -37,7 +37,7 @@ const crearTabla = (tabla) => {
 					else
 						resolve("Creada la tabla: ", tabla);
 				});
-				
+
 				con.end();
 			}
 		});
@@ -87,7 +87,7 @@ const crearTodasLasTablas = async () => {
 		[rutaFran, "promociona.sql"], [rutaFran, "compara.sql"],	// hasta aquí las rutas de Fran
 		[rutaNacho, "empleado.sql"], [rutaNacho, "departamento.sql"],
 		[rutaNacho, "pertenece.sql"] ];					// hasta aquí las rutas de nacho
-	
+
 	for(let i = 0; i < ficheros.length; ++i) {
 		let lecturaFichero = await leer(ficheros[i][0], ficheros[i][1]);
 		console.log("Lectura fichero: ", lecturaFichero);
@@ -101,8 +101,8 @@ const crearTodasLasTuplas = async () => {
 		"tuplasCompet.sql"], [rutaIgnacio, "tuplasProd.sql"],	// ATENTO IGNACIO
 		[rutaFran, "tuplasPromo.sql"], [rutaFran, "tuplasComp.sql"],	// hasta aquí las rutas de Fran
 		[rutaNacho, "tuplasEmpleado.sql"], [rutaNacho, "tuplasDepartamento.sql"],
-		[rutaNacho, "tuplasPertenece.sql"] ];	
-	
+		[rutaNacho, "tuplasPertenece.sql"] ];
+
 	for(let i = 0; i < ficheros.length; ++i) {
 		let lecturaFichero = await leer(ficheros[i][0], ficheros[i][1], crearTabla);
 		console.log("Lectura fichero: ", lecturaFichero);
@@ -110,9 +110,31 @@ const crearTodasLasTuplas = async () => {
 	}
 }
 
+
+
+const llamarCursores = () => {
+	operacionesComunes.conectarse(function(err, con) {
+		if(err)
+			console.log("Hubo un error al conectarse con la BD en consultarPertenece");
+
+		let sql = "SET @listaEmpleados = \"\";" +
+						  "CALL cursorRH(@listaEmpleados);";
+
+		con.query(sql, function(err, result) {
+			if(err)
+				console.log("Hubo un error al llamar a los cursores");
+			else
+				console.log("Cursores inicializados");
+
+			con.end();
+		});
+	});
+};
+
 //eliminarTodasLasTablas();
 //crearTodasLasTablas();
-crearTodasLasTuplas();
+//crearTodasLasTuplas();
+llamarCursores();
 /*
 module.exports.crearTabla = crearTabla;
 module.exports.crearTodasLasTablas = crearTodasLasTablas;
