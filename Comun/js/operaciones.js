@@ -204,7 +204,7 @@ conectarse((err, con) => {
 */
 
 const devolverRespuesta = (res, respuesta) => {
-	fs.readFile("../../Comun/html/respuesta.html", "utf-8", (err, data) => {
+	fs.readFile("./Comun/html/respuesta.html", "utf-8", (err, data) => {
 		if(err) {
 			console.log("Error al intentar leer el fichero");
 			console.log("Error: ", err);
