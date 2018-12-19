@@ -1,10 +1,10 @@
-INSERT INTO Distribuidor VALUES ('20','A');
-INSERT INTO Distribuidor VALUES ('21','B');
-INSERT INTO Distribuidor VALUES ('22','C');
-INSERT INTO Distribuidor VALUES ('23','D');
-INSERT INTO Distribuidor VALUES ('24','E');
-INSERT INTO Distribuidor VALUES ('25','F');
-INSERT INTO Distribuidor VALUES ('26','G');
-INSERT INTO Distribuidor VALUES ('27','H');
-INSERT INTO Distribuidor VALUES ('28','I');
-INSERT INTO Distribuidor VALUES ('29','J');
+INSERT INTO Distribuidor VALUES ('20','A'),
+('21','B'),
+('22','C'),
+('23','D'),
+('24','E'),
+('25','F'),
+('26','G'),
+('27','H'),
+('28','I'),
+('29','J');

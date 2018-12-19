@@ -1,5 +1,5 @@
-INSERT INTO Envia VALUES (0, '1', '10-11-2018', 6);
-INSERT INTO Envia VALUES (1, '2', '10-11-2018', 8);
-INSERT INTO Envia VALUES (2, '6', '10-11-2018', 3);
-INSERT INTO Envia VALUES (3, '1', '10-11-2018', 5);
-INSERT INTO Envia VALUES (4, '6', '10-11-2018', 9);
+INSERT INTO Envia VALUES (0, '1', '10-11-2018', 6),
+(1, '2', '10-11-2018', 8),
+(2, '6', '10-11-2018', 3),
+(3, '1', '10-11-2018', 5),
+(4, '6', '10-11-2018', 9);
