@@ -14,6 +14,7 @@ const http = require('http');
 const url = require('url');
 const operaciones = require('./operacionesRecursosHumanos');
 const operacionesComunes = require('../../Comun/js/operaciones');
+//const devolverRespuesta = require('../../Comun/js/operaciones').devolverRespuesta;
 
 var server = http.createServer((req, res) => {
 	var uri = url.parse(req.url, true);
@@ -45,10 +46,12 @@ var server = http.createServer((req, res) => {
 
 			respuesta += "Operación realizada con éxito";
 
+			//devolverRespuesta(res, respuesta);
 
 			res.writeHead(200, {"Content-Type": "text/html"});
 			res.write(respuesta);
 			res.end();
+
 		break;
 
 		case 1001:	// Crear departamento
@@ -57,6 +60,7 @@ var server = http.createServer((req, res) => {
 
 			respuesta += "Operación realizada con éxito";
 
+			//devolverRespuesta(res, respuesta);
 
 			res.writeHead(200, {"Content-Type": "text/html"});
 			res.write(respuesta);
@@ -77,6 +81,8 @@ var server = http.createServer((req, res) => {
 
 				respuesta += "</ul>";
 
+				//devolverRespuesta(res, respuesta);
+
 				res.writeHead(200, {"Content-Type": "text/html"});
 				res.write(respuesta);
 				res.end();
@@ -96,6 +102,8 @@ var server = http.createServer((req, res) => {
 					respuesta += "<li>" + x + ": " + camposValores[x] + "</li>";
 
 				respuesta += "</ul>";
+
+				//devolverRespuesta(res, respuesta);
 
 				res.writeHead(200, {"Content-Type": "text/html"});
 				res.write(respuesta);
@@ -146,6 +154,8 @@ var server = http.createServer((req, res) => {
 
 			respuesta += "Operación realizada con éxito";
 
+			//devolverRespuesta(res, respuesta);
+
 			res.writeHead(200, {"Content-Type": "text/html"});
 			res.write(respuesta);
 			res.end();
@@ -193,6 +203,8 @@ var server = http.createServer((req, res) => {
 
 			respuesta += "Operación realizada con éxito";
 
+			//devolverRespuesta(res, respuesta);
+
 			res.writeHead(200, {"Content-Type": "text/html"});
 			res.write(respuesta);
 			res.end();
@@ -213,6 +225,8 @@ var server = http.createServer((req, res) => {
 			operaciones.eliminarDepartamento(params[1]);
 			respuesta += "Operación realizada con éxito";
 
+			//devolverRespuesta(res, respuesta);
+
 			res.writeHead(200, {"Content-Type": "text/html"});
 			res.write(respuesta);
 			res.end();
@@ -224,6 +238,7 @@ var server = http.createServer((req, res) => {
 
 			respuesta += "Operación realizada con éxito";
 
+			//devolverRespuesta(res, respuesta);
 
 			res.writeHead(200, {"Content-Type": "text/html"});
 			res.write(respuesta);
@@ -243,6 +258,8 @@ var server = http.createServer((req, res) => {
 					respuesta += "<li>" + x + ": " + camposValores[x] + "</li>";
 
 				respuesta += "</ul>";
+
+				//devolverRespuesta(res, respuesta);
 
 				res.writeHead(200, {"Content-Type": "text/html"});
 				res.write(respuesta);

@@ -33,7 +33,7 @@ BEGIN
       LEAVE bucle;
     END IF;
 
-    SET listaEmpleados = CONCAT(NombreEmpleado, " con DNI: ", DNIEmpleado);
+      SET listaEmpleados = CONCAT(listaEmpleados, NombreEmpleado, " con DNI: ", DNIEmpleado, "<br\>");
   END LOOP;
 
 
