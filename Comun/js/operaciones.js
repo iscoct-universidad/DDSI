@@ -5,6 +5,7 @@ const fs = require('fs');
 
 const conectarse = (callback) => {
 	var con = mysql.createConnection({
+		multipleStatements: true,
 		host: 		"localhost",
 		user: 		"iscoct",
 		password: "Vamos a aprobar DDSI de 3",
@@ -155,7 +156,7 @@ const modificarTupla = (nombreTabla, campos, valores, camposCondiciones, condici
 
 			if(callback != undefined)
 				callback(err, result);
-				
+
 			con.end();
 		});
 	});
@@ -209,9 +210,9 @@ const devolverRespuesta = (res, respuesta) => {
 			console.log("Error: ", err);
 		}
 		let bloque = "id=\"respuesta\">";
-		
+
 		data = data.replace(bloque, bloque + respuesta);
-		
+
 		res.writeHead(200, {"Content-Type": "text/html"});
 		res.write(data);
 		res.end();

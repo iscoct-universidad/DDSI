@@ -110,7 +110,7 @@ const crearTodasLasTuplas = async () => {
 }
 
 
-
+/*
 const llamarCursores = () => {
 	operacionesComunes.conectarse(function(err, con) {
 		if(err)
@@ -129,11 +129,14 @@ const llamarCursores = () => {
 		});
 	});
 };
+*/
 
 //eliminarTodasLasTablas();
 //crearTodasLasTablas();
 //crearTodasLasTuplas();
-llamarCursores();
+
+
+//llamarCursores(); Por quitar
 /*
 module.exports.crearTabla = crearTabla;
 module.exports.crearTodasLasTablas = crearTodasLasTablas;
