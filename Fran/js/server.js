@@ -1,6 +1,7 @@
 const http = require('http');
 const url = require('url');
 const operaciones = require('./operacionesMarketing');
+const devolverRespuesta = require('../../Comun/js/operaciones').devolverRespuesta;
 
 var server = http.createServer((req, res) => {
 	var uri = url.parse(req.url, true);
@@ -32,26 +33,25 @@ var server = http.createServer((req, res) => {
 			
 			respuesta += "Operación realizada con éxito";
 			
-			res.writeHead(200, {"Content-Type": "text/html"});
-			res.write(respuesta);
-			res.end();
+			devolverRespuesta(res, respuesta);
 		break;
 		case 1001:
 			console.log(solicitud + "consultar una campaña publicitaria");
 			
 			operaciones.consultarCampania(params[1], function(consulta) {
-				var camposValores = consulta[0];
-	
-				respuesta += "La campaña publicitaria consultada contiene estos valores<br/><ul>";
-				
-				for(let x in camposValores)
-					respuesta += "<li>" + x + ": " + camposValores[x] + "</li>";
+				if(consulta.length > 0) {
+					var camposValores = consulta[0];
+		
+					respuesta += "La campaña publicitaria consultada contiene estos valores<br/><ul>";
 					
-				respuesta += "</ul>";
-				
-				res.writeHead(200, {"Content-Type": "text/html"});
-				res.write(respuesta);
-				res.end();
+					for(let x in camposValores)
+						respuesta += "<li>" + x + ": " + camposValores[x] + "</li>";
+						
+					respuesta += "</ul>";
+				} else
+					respuesta += "Introdujo un identificador que no existe en la base de datos";
+					
+				devolverRespuesta(res, respuesta);
 			});		
 		break;
 		/*
@@ -99,22 +99,26 @@ var server = http.createServer((req, res) => {
 			console.log("Campos de las condiciones: ", camposCondiciones);
 			console.log("Valores de las condiciones: ", valoresCondiciones);
 			
-			operaciones.modificarCampania(campos, valores, camposCondiciones, valoresCondiciones);
-			
-			respuesta += "Operación realizada con éxito";
-			
-			res.writeHead(200, {"Content-Type": "text/html"});
-			res.write(respuesta);
-			res.end();
+			operaciones.modificarCampania(campos, valores, camposCondiciones, valoresCondiciones, (err, result) => {
+				console.log("Error: ", err);
+				console.log("Resultado: ", result);
+				
+				if (err)
+					respuesta += "No insertó ningún campo a modificar";
+				else if(result.affectedRows == 0)
+					respuesta += "Introdujo un identificador que no se encuentra en la base de datos";
+				else
+					respuesta += "Se realizó la modificación de la tupla con éxito";
+					
+				devolverRespuesta(res, respuesta);
+			});
 		break;
 		case 1003:
 			console.log(solicitud + "eliminar una campaña publicitaria");
 			operaciones.eliminarCampania(params[1]);
 			respuesta += "Operación realizada con éxito";
 			
-			res.writeHead(200, {"Content-Type": "text/html"});
-			res.write(respuesta);
-			res.end();
+			devolverRespuesta(res, respuesta);
 		break;
 		/*
 			Los parámetros deben de seguir el orden, 
@@ -127,9 +131,7 @@ var server = http.createServer((req, res) => {
 			operaciones.crearInfProdComp(params[1], params[2], params[3], params[4], params[5]);
 			respuesta += "Operación realizada con éxito";
 			
-			res.writeHead(200, {"Content-Type": "text/html"});
-			res.write(respuesta);
-			res.end();
+			devolverRespuesta(res, respuesta);
 		break;
 		default:
 			console.log("Código de operación no válido");

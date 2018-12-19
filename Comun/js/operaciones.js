@@ -1,6 +1,7 @@
 "use strict"
 
-var mysql = require('mysql');
+const mysql = require('mysql');
+const fs = require('fs');
 
 const conectarse = (callback) => {
 	var con = mysql.createConnection({
@@ -119,7 +120,7 @@ insertarTupla("CampaniaPublicitaria", camposCampania, valoresCampania);
 		y condicionesNormales puede ser igual a Entidad.Nombre = 'Z'.
 */
 
-const modificarTupla = (nombreTabla, campos, valores, camposCondiciones, condiciones) => {
+const modificarTupla = (nombreTabla, campos, valores, camposCondiciones, condiciones, callback) => {
 	conectarse(function(err, con) {
 		if(err)
 			console.log("Error al intentar conectarse a la BD en modificarTupla");
@@ -152,6 +153,9 @@ const modificarTupla = (nombreTabla, campos, valores, camposCondiciones, condici
 			else
 				console.log("Modificada con éxito");
 
+			if(callback != undefined)
+				callback(err, result);
+				
 			con.end();
 		});
 	});
@@ -198,8 +202,25 @@ conectarse((err, con) => {
 });
 */
 
+const devolverRespuesta = (res, respuesta) => {
+	fs.readFile("../../Comun/html/respuesta.html", "utf-8", (err, data) => {
+		if(err) {
+			console.log("Error al intentar leer el fichero");
+			console.log("Error: ", err);
+		}
+		let bloque = "id=\"respuesta\">";
+		
+		data = data.replace(bloque, bloque + respuesta);
+		
+		res.writeHead(200, {"Content-Type": "text/html"});
+		res.write(data);
+		res.end();
+	});
+}
+
 module.exports.tomarMaximo = tomarMaximo;
 module.exports.conectarse = conectarse;
 module.exports.modificarTupla = modificarTupla;
 module.exports.eliminarTupla = eliminarTupla;
 module.exports.insertarTupla = insertarTupla;
+module.exports.devolverRespuesta = devolverRespuesta;

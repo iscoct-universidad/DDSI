@@ -25,7 +25,9 @@ var consultarCampania = (identificador, callback) => {		// Otra manera de declar
 			else
 				console.log("Realizada la consulta de la campaña publicitaria");
 			
-			callback(result);
+			if(callback != undefined)
+				callback(result);
+				
 			con.end();
 		});
 	});
@@ -105,8 +107,12 @@ crearCampania("K", "K", "K");
 	Igual para las condiciones
 */
 
-var modificarCampania = (campos, valores, camposCondiciones, condiciones) => {
-	operacionesComunes.modificarTupla("Entidad, CampaniaPublicitaria", campos, valores, camposCondiciones, condiciones);
+var modificarCampania = (campos, valores, camposCondiciones, condiciones, callback) => {
+	operacionesComunes.modificarTupla("Entidad, CampaniaPublicitaria", campos, 
+		valores, camposCondiciones, condiciones, (err, result) => {
+			if(callback != undefined)
+				callback(err, result);
+		});
 }
 
 /*
