@@ -1,8 +1,7 @@
 "use strict"
 
 const fs = require('fs');
-const operacionesComunes = require('./operaciones');
-const forEach = require('async-foreach').forEach;
+const operacionesComunes = require('./operaciones')
 
 var rutaEntidad		= '../sql/';
 var rutaFran 		= '../../Fran/sql/';
