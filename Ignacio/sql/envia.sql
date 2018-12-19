@@ -5,11 +5,11 @@ CREATE TABLE Envia (
   Cantidad  INT   NOT NULL,
 
   PRIMARY KEY (CodProd, CodEnt, Fecha),
-  CONSTRAINT CodProd_fk
+  CONSTRAINT CodProd_fka
     FOREIGN KEY (CodProd)
     REFERENCES Producto(CodProd)
     ON DELETE CASCADE,
-  CONSTRAINT CodEnt_Envia_fk
+  CONSTRAINT CodEnt_Envia_fke
     FOREIGN KEY (CodEnt)
     REFERENCES Distribuidor(CodEnt)
     ON DELETE CASCADE

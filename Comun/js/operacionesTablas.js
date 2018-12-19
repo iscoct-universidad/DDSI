@@ -67,8 +67,8 @@ const eliminarTodasLasTablas = () => {
 		var oper = "drop table ";
 
 		// Ponemos aquí nuestras tablas en cascada
-		oper += "Pertenece, Departamentos, Empleados, " +
-						"Promociona, Compara, ProductoCompetidor, CampaniaPublicitaria, Entidad, Producto";
+		oper += "Gestor, Ingresarpagar" + "Pertenece, Departamentos, Empleados, " +
+						"Promociona, Compara, ProductoCompetidor, CampaniaPublicitaria, Entidad, Producto" + "Distribuidor, Envia, Producto";
 
 		con.query(oper, (err, result) => {
 			if(err)
@@ -85,7 +85,11 @@ const crearTodasLasTablas = async () => {
 		"productoCompetidor.sql"], [rutaIgnacio, "producto.sql"],	// ATENTO IGNACIO
 		[rutaFran, "promociona.sql"], [rutaFran, "compara.sql"],	// hasta aquí las rutas de Fran
 		[rutaNacho, "empleado.sql"], [rutaNacho, "departamento.sql"],
-		[rutaNacho, "pertenece.sql"] ];					// hasta aquí las rutas de nacho
+		[rutaNacho, "pertenece.sql"],
+		[rutaJuanma, "gestor.sql"],
+		[rutaJuanma, "ingpag.sql"],
+		[rutaIgnacio, "distribuidor.sql"],
+		[rutaIgnacio, "envia.sql"] ];					// hasta aquí las rutas de nacho
 
 	for(let i = 0; i < ficheros.length; ++i) {
 		let lecturaFichero = await leer(ficheros[i][0], ficheros[i][1]);
@@ -100,7 +104,11 @@ const crearTodasLasTuplas = async () => {
 		"tuplasCompet.sql"], [rutaIgnacio, "tuplasProd.sql"],	// ATENTO IGNACIO
 		[rutaFran, "tuplasPromo.sql"], [rutaFran, "tuplasComp.sql"],	// hasta aquí las rutas de Fran
 		[rutaNacho, "tuplasEmpleado.sql"], [rutaNacho, "tuplasDepartamento.sql"],
-		[rutaNacho, "tuplasPertenece.sql"] ];
+		[rutaNacho, "tuplasPertenece.sql"],
+		[rutaJuanma, "tuplasGestor.sql"],
+		[rutaJuanma, "tuplasIngPag.sql"],
+		[rutaIgnacio, "tuplasDist.sql"],
+		[rutaIgnacio, "tuplasEnvia.sql"] ];
 
 	for(let i = 0; i < ficheros.length; ++i) {
 		let lecturaFichero = await leer(ficheros[i][0], ficheros[i][1], crearTabla);
@@ -133,7 +141,7 @@ const llamarCursores = () => {
 
 //eliminarTodasLasTablas();
 //crearTodasLasTablas();
-//crearTodasLasTuplas();
+crearTodasLasTuplas();
 
 
 //llamarCursores(); Por quitar
