@@ -175,7 +175,7 @@ var consultarPertenece = (identificador, callback) => {
 						  "SELECT @listaEmpleados;";
 
 		let sql1 = "SET @listaEmpleados = \"\";" +
-						  "CALL cursorRH(@listaEmpleados);";		
+						  "CALL cursorRH(@listaEmpleados);";
 
 		con.query(sql1, function(err, result) {
 			if(err)
@@ -190,7 +190,7 @@ var consultarPertenece = (identificador, callback) => {
 					console.log("Realizada la consulta del empleado");
 
 				callback(result);
-				con.end();
+//				con.end();
 			});
 
 			con.end();
