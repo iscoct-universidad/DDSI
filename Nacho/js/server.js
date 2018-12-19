@@ -48,10 +48,6 @@ var server = http.createServer((req, res) => {
 
 			devolverRespuesta(res, respuesta);
 
-			// res.writeHead(200, {"Content-Type": "text/html"});
-			// res.write(respuesta);
-			// res.end();
-
 		break;
 
 		case 1001:	// Crear departamento
@@ -245,13 +241,17 @@ var server = http.createServer((req, res) => {
 			console.log(solicitud + "listar empleados de un departamento");
 
 			operaciones.consultarPertenece(params[1], function(consulta) {
-				var camposValores = consulta[0];
+				var camposValores = consulta[0]['@listaEmpleados'];
+				// var arrayModificado = camposValores.replace('<br/>', '<br/>&')
+				// var arrayCadena = camposValores.split('&');
+				var arrayModificado = camposValores.replace('>', '>&')
+				var arrayCadena = arrayModificado.split('&');
 
 				console.log("Consulta: ", consulta);
 				respuesta += "Los empleado pertenecientes al departamento 1 son:<br/><ul>";
 
-				for(let x in camposValores)
-					respuesta += "<li>" + x + ": " + camposValores[x] + "</li>";
+				for(let x in arrayCadena)
+					respuesta += "<li>" + x + ": " + arrayCadena[x] + "</li>";
 
 				respuesta += "</ul>";
 

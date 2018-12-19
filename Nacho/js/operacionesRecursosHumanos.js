@@ -176,12 +176,10 @@ var consultarPertenece = (identificador, callback) => {
 		if(err)
 			console.log("Hubo un error al conectarse con la BD en consultarPertenece");
 
-		let sql2 = //"SET @listaEmpleados = \"\";" +
-						  //"CALL cursorRH(@listaEmpleados);" +
-						  "SELECT @listaEmpleados;";
-
 		let sql1 = "SET @listaEmpleados = \"\";" +
 						  "CALL cursorRH(@listaEmpleados);";
+
+		let sql2 = "SELECT @listaEmpleados;";
 
 		con.query(sql1, function(err, result) {
 			if(err)
@@ -196,10 +194,10 @@ var consultarPertenece = (identificador, callback) => {
 					console.log("Realizada la consulta del empleado");
 
 				callback(result);
-//				con.end();
+				con.end();
 			});
 
-			con.end();
+	//		con.end();
 		});
 	});
 };

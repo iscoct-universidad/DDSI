@@ -20,7 +20,7 @@ BEGIN
   FETCH nombres INTO NombreCampania, NombreProducto;
 
   DBMS_OUTPUT.PUT_LINE('Pareja de nombres');
-  
+
   WHILE nombres%found LOOP
     DBMS_OUTPUT.PUT_LINE('Nombre de la campaña: ' || NombreCampania);
     DBMS_OUTPUT.PUT_LINE('Nombre del producto: ' || NombreProducto);
@@ -31,20 +31,39 @@ BEGIN
 END;
 */
 
-create procedure cursorFran
-begin
-	declare nombreCampania varchar(50);
+-- Comparar productos con productos competidores --
+-- mostrando el nombre del producto y el del competidor --
+
+
+DELIMITER $$
+
+CREATE PROCEDURE cursorFran (INOUT listaNombres varchar(4000))
+BEGIN
+	declare nombreProductoCompetidor varchar(50);
 	declare nombreProducto varchar(50);
-	declare nombres cursor for select Empleados.Nombre, Empleados.DNI from Empleados,
-		Pertenece where Pertenece.CodDep = '1' and Pertenece.CodEnt = Empleados.CodEnt;
-	
-	open nombres;
-	
-	fetch nombres into nombreCampania, nombreProducto;
-		
-	read_loop: loop
-		fetch nombres into nombreCampania, nombreProducto;
+	declare fin integer default 0;
+	declare nombres CURSOR for
+		select Producto.Nombre, ProductoCompetidor.Nombre from ProductoCompetidor, Producto, Compara
+		where Compara.CodProdComp = ProductoCompetidor.CodProdComp and Compara.CodProd = Producto.CodProd;
+
+	-- Equivalente a %found en PL/SQL --
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET fin = TRUE;
+
+	OPEN nombres;
+
+	bucle: loop
+		fetch nombres into nombreProducto, nombreProductoCompetidor;
+
+		IF fin = 1 THEN
+      LEAVE bucle;
+    END IF;
+
+		SET listaNombres =
+				CONCAT(listaNombres, "Producto: ", nombreProducto," y Competidor: ",
+							 nombreProductoCompetidor, "<br\\>");
 	end loop;
-	
+
 	close nombres;
-end
+end$$
+
+DELIMITER ;
