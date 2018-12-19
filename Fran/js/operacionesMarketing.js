@@ -19,13 +19,24 @@ var consultarCampania = (identificador, callback) => {		// Otra manera de declar
 			" CampaniaPublicitaria.CodEnt = " + identificador + ";";
 
 		con.query(sql, function(err, result) {
-			if(err)
+			if(err) {
 				console.log("Hubo un error al hacer la consulta de la " +
 					" campaña publicitaria");
-			else
+				
+				callback(err);
+			} else if(result.length > 0){
 				console.log("Realizada la consulta de la campaña publicitaria");
+				
+				callback(result);
+			} else {
+				result = "La operación se realizó con éxito pero el identificador " +
+					"no se corresponde con ninguno en la base de datos";
+					
+				console.log(result);
+				
+				callback(result);
+			}
 			
-			callback(result);
 			con.end();
 		});
 	});
@@ -63,9 +74,11 @@ eliminarCampania(3);
 	sea uno mayor al máximo de los CodEnt existentes
 	
 	Luego crearemos primero la Entidad y luego la Campaña publicitaria
+	
+	return: Devuelve el error de la consulta
 */
 
-var crearCampania = (nombre, tipo, publicoObjetivo) => {
+var crearCampania = (nombre, tipo, publicoObjetivo, callback) => {
 	operacionesComunes.conectarse(function(err, con) {
 		if(err)
 			console.log("Hubo un error al conectarse con la BD");
@@ -79,14 +92,20 @@ var crearCampania = (nombre, tipo, publicoObjetivo) => {
 			let identificador = maximo + 1;
 			let campos = ["CodEnt", "Nombre"];
 			let valores = [identificador, nombre];
+			let respuesta = [];
 			
-			operacionesComunes.insertarTupla("Entidad", campos, valores);
+			operacionesComunes.insertarTupla("Entidad", campos, valores, (err) => {
+				campos = ["CodEnt", "Tipo", "PublicoObjetivo"];
+				valores = [identificador, tipo, publicoObjetivo];
+				
+				respuesta.push(err);
+				
+				operacionesComunes.insertarTupla("CampaniaPublicitaria", campos, valores, (err) => {
+					respuesta.push(err);
+					callback(respuesta);
+				});
+			});
 			
-			campos = ["CodEnt", "Tipo", "PublicoObjetivo"];
-			valores = [identificador, tipo, publicoObjetivo];
-			
-			operacionesComunes.insertarTupla("CampaniaPublicitaria", campos, valores);
-		
 			con.end();
 		});
 	});
@@ -105,8 +124,13 @@ crearCampania("K", "K", "K");
 	Igual para las condiciones
 */
 
-var modificarCampania = (campos, valores, camposCondiciones, condiciones) => {
-	operacionesComunes.modificarTupla("Entidad, CampaniaPublicitaria", campos, valores, camposCondiciones, condiciones);
+var modificarCampania = (campos, valores, camposCondiciones, condiciones, callback) => {
+	operacionesComunes.modificarTupla("Entidad, CampaniaPublicitaria", campos, valores, 
+				camposCondiciones, condiciones, (err) => {
+		console.log("Resultado: ", err);
+		if(callback != undefined)
+			callback(err);
+	});
 }
 
 /*
@@ -120,7 +144,7 @@ var condiciones = ["Z"];
 modificarCampania(campos, valores, camposCondiciones, condiciones);
 */
 
-var crearInfProdComp = (nombre, precio, rendimiento, informe, idProducto) => {
+var crearInfProdComp = (nombre, precio, rendimiento, informe, idProducto, callback) => {
 	operacionesComunes.conectarse(function(err, con) {
 		if(err)
 			console.log("Hubo un error al intentar conectarse a la BD en crearInfProdComp");
@@ -147,7 +171,10 @@ var crearInfProdComp = (nombre, precio, rendimiento, informe, idProducto) => {
 					
 				valores = [idNuevo, idProducto, idNuevoComp, informe];
 
-				operacionesComunes.insertarTupla("Compara", campos, valores);
+				operacionesComunes.insertarTupla("Compara", campos, valores, (err) => {
+					callback(err);
+				});
+				
 				con.end();
 			});
 		});

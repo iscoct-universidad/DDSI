@@ -2,7 +2,6 @@
 
 const fs = require('fs');
 const operacionesComunes = require('./operaciones');
-const forEach = require('async-foreach').forEach;
 
 var rutaEntidad		= '../sql/';
 var rutaFran 		= '../../Fran/sql/';
