@@ -2,27 +2,35 @@
 
 -- Listado de productos enviados a un distribuidor y su familia --
 
-DECLARE
-  CURSOR cProductos IS
-    SELECT Producto.Nombre, Producto.Familia 
+DELIMITER $$
+
+CREATE PROCEDURE cursorEnviados (INOUT listaEnviados varchar(4000))
+BEGIN
+
+  DECLARE NombreProducto VARCHAR(20);
+  DECLARE FamiliaProducto VARCHAR(20);
+  DECLARE fin INTEGER DEFAULT 0;
+
+  DECLARE cProductos CURSOR FOR
+    SELECT Producto.Nombre, Producto.Familia
     FROM Producto, Envia
     WHERE Envia.CodEnt = 1 AND Envia.CodProd = Producto.CodProd;
 
-  NombreProducto VARCHAR(20);
-  FamiliaProducto VARCHAR(20);
+  DECLARE CONTINUE HANDLER FOR NOT FOUND SET fin = TRUE;
 
-BEGIN
-  OPEN cProductos;
+    OPEN cProductos;
 
-  FETCH cProductos INTO NombreProducto, FamiliaProducto;
+    bucle: LOOP
+      FETCH cProductos INTO NombreProducto, FamiliaProducto;
+      IF fin = 1 THEN
+        LEAVE bucle;
+      END IF;
 
-  DBMS_OUTPUT.PUT_LINE('Los productos enviados al distribuidor 1 son:');
+      SET listaEnviados = CONCAT(listaEnviados, NombreProducto, " de la Familia: ", FamiliaProducto, "<br\>");
+    END LOOP;
 
-  WHILE cProductos%found LOOP
-    DBMS_OUTPUT.PUT_LINE(NombreProducto || ' de la familia: ' || FamiliaProducto);
-    FETCH cproductos INTO NombreProducto, FamiliaProducto;
-  END LOOP;
 
-  CLOSE cProductos;
-END;
-/
+    CLOSE cProductos;
+END$$
+
+DELIMITER ;

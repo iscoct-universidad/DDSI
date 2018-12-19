@@ -1,17 +1,16 @@
-/* Disparador de producción - Ignacio Barragán Lozano */
+/* Disparador de producciï¿½n - Ignacio Barragï¿½n Lozano */
 
-/* Modificar el stock de un producto cuando este se envía a un distribuidor */
+/* Modificar el stock de un producto cuando este se envï¿½a a un distribuidor */
 
-CREATE OR REPLACE TRIGGER modificarStock
-BEFORE INSERT ON Envia
+CREATE TRIGGER modificarStock BEFORE INSERT ON Envia
 FOR EACH ROW
 DECLARE
   tStock INTEGER;
-BEGIN  
+BEGIN
   SELECT Stock INTO tStock
   FROM Producto
   WHERE CodProd = :new.CodProd;
-  
+
   IF tStock >= :new.Cantidad THEN
     UPDATE Producto
     SET Stock = tStock - :new.Cantidad
@@ -22,4 +21,3 @@ BEGIN
     WHERE CodProd = :new.CodProd;
   END IF;
 END;
-/
