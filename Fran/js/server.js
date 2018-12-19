@@ -116,7 +116,7 @@ var server = http.createServer((req, res) => {
 		case 1003:
 			console.log(solicitud + "eliminar una campaña publicitaria");
 			operaciones.eliminarCampania(params[1]);
-			respuesta += "Operación realizada con éxito";
+			respuesta += "La tupla con dicho identificador ya no se encuentra en la base de datos";
 			
 			devolverRespuesta(res, respuesta);
 		break;
