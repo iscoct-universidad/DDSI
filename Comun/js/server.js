@@ -17,7 +17,7 @@ const contenidoTabla = (con, nombreTabla) => {
 				reject(respuesta);
 			} else {
 				respuesta += "<h2>" + nombreTabla + "</h2>";
-				respuesta += "<table class=\"table\"><thead class=\"thead-dark\"><tr>";
+				respuesta += "<table class=\"table table-hover table-dark table-bordered\"><thead class=\"thead-dark\"><tr>";
 				
 				for(let x in result[0])
 					respuesta += "<th scope=\"col\">" + x + "</th>";
