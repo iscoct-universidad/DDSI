@@ -1,4 +1,4 @@
-INSERT INTO ProductoCompetidor VALUES ('0', '1.2', 'A', null),
-('1', '2.2', 'B', null), ('2', '3.2', 'C', null), ('3', '4.2', 'D', null),
-('4', '5.2', 'E', null), ('5', '6.2', 'F', '0.5'), ('6', '7.2', 'G', '0.9'),
-('7', '8.2', 'H', '0.2'), ('8', '9.2', 'I', '0.3'), ('9', '10.2', 'J', '0.8');
+INSERT INTO ProductoCompetidor VALUES ('0', '1.2', 'Raton', null),
+('1', '2.2', 'Teclado', null), ('2', '3.2', 'Monitor', null), ('3', '4.2', 'Batería', null),
+('4', '5.2', 'Placa Base', null), ('5', '6.2', 'Tarjeta Grafica', '0.5'), ('6', '7.2', 'Microprocesador', '0.9'),
+('7', '8.2', 'Memoria', '0.2'), ('8', '9.2', 'Almacenamiento', '0.3'), ('9', '10.2', 'Audio', '0.8');
