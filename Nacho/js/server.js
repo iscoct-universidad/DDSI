@@ -56,11 +56,8 @@ var server = http.createServer((req, res) => {
 
 			respuesta += "Operación realizada con éxito";
 
-			//devolverRespuesta(res, respuesta);
+			devolverRespuesta(res, respuesta);
 
-			res.writeHead(200, {"Content-Type": "text/html"});
-			res.write(respuesta);
-			res.end();
 		break;
 
 		case 1002:	// Consultar empleado
@@ -84,7 +81,8 @@ var server = http.createServer((req, res) => {
 					respuesta += "Ha introducido un identificador que no se encuentra en la BD";
 				}
 
-				devolverRespuesta(res, respuesta);			});
+				devolverRespuesta(res, respuesta);
+			});
 		break;
 
 		case 1003:	// Consultar departamento
