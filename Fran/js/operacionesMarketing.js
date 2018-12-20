@@ -48,8 +48,10 @@ consultarCampania(5, tratamientoConsulta);
 */
 
 var eliminarCampania = (identificador) => {
-	operacionesComunes.eliminarTupla("Entidad", "CodEnt", identificador);
+	operacionesComunes.eliminarTupla("Promociona", "CodEnt", identificador);
 	operacionesComunes.eliminarTupla("CampaniaPublicitaria", "CodEnt", identificador);
+	operacionesComunes.eliminarTupla("Entidad", "CodEnt", identificador);
+
 }
 
 /*

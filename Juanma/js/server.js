@@ -1,19 +1,7 @@
-/* Códigos
-	1000: Crear empleado
-	1001: Crear departamento
-	1002: Consultar empleado
-	1003: Consultar departamento
-	1004: Modificar empleado
-	1005: Modificar departamento
-	1006: Eliminar empleado
-	1007: Eliminar departamento
-	1008: Añadir empleado a departamento
-	1009: Listar empleados de un departamento
-*/
 const http = require('http');
 const url = require('url');
 const operaciones = require('./operacionesFinanzas');
-const operacionesComunes = require('../../Comun/js/operaciones');
+const devolverRespuesta = require('../../Comun/js/operaciones').devolverRespuesta;
 
 var server = http.createServer((req, res) => {
 	var uri = url.parse(req.url, true);
@@ -107,11 +95,40 @@ var server = http.createServer((req, res) => {
 			operaciones.eliminarPago(params[1]);
 			respuesta += "Operación realizada con éxito";
 
-			res.writeHead(200, {"Content-Type": "text/html"});
-			res.write(respuesta);
-			res.end();
+			//devolverRespuesta(res, respuesta);
 		break;
 
+		case 1005:
+			console.log(solicitud + " listar nombres y DNI de gestores");
+
+			operaciones.consultarGestor((consulta) => {
+				var camposValores = consulta[0]['@listaGestor'];
+				var arrayModificado = camposValores.replace(/>/g, '>&');
+				var arrayCadena = arrayModificado.split('&');
+				
+				arrayCadena.splice(-1, 1);
+				
+				console.log("Consulta: ", consulta);
+				console.log("Array modificado: ", arrayModificado);
+				console.log("Array cadena: ", arrayCadena);
+				
+				respuesta += "Listado de los nombres y DNI de gestores<br/><ul>";
+				
+				arrayCadena.forEach((value, index, array) => {
+					respuesta += "<li>" + value + "</li>";
+				});
+				
+				respuesta += "</ul>";
+
+				console.log("Respuesta: ", respuesta);
+				devolverRespuesta(res, respuesta);
+			});
+		break;
+		default:
+			console.log("Código de operación no válido");
+
+			respuesta += "Se ha introducido un código de operación erróneo"
+			devolverRespuesta(res, respuesta);
 	}
 });
 

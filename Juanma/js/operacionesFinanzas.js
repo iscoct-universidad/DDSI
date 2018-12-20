@@ -96,6 +96,39 @@ var eliminarPago = (identificador) => {
 }
 
 
+var consultarGestor = (callback) => {
+	operacionesComunes.conectarse(function(err, con) {
+		if(err)
+			console.log("Hubo un error al conectarse con la BD en consultarPertenece");
+
+		let sql1 = "SET @listaGestor = \"\"; CALL cursorFinanzas(@listaGestor);";
+
+		let sql2 = "SELECT @listaGestor;";
+
+		con.query(sql1, function(err, result) {
+			if(err)
+				console.log("Hubo un error al llamar a los cursores");
+			else
+				console.log("Cursores inicializados");
+
+			con.query(sql2, function(err, result) {
+				if(err)
+					console.log("Hubo un error al hacer la consulta de la lista de gestores");
+				else
+					console.log("Realizada la consulta del gestor");
+
+				if(callback != undefined)
+					callback(result);
+					
+				con.end();
+			});
+
+	//		con.end();
+		});
+	});
+};
+
+
 module.exports.crearIngreso = crearIngreso;
 module.exports.crearPago = crearPago;
 
@@ -103,3 +136,4 @@ module.exports.consultarIngreso = consultarIngreso;
 module.exports.consultarPago = consultarPago;
 
 module.exports.eliminarPago = eliminarPago;
+module.exports.consultarGestor = consultarGestor;

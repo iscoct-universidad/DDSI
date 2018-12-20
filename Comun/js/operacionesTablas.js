@@ -141,7 +141,7 @@ const llamarCursores = () => {
 
 //eliminarTodasLasTablas();
 //crearTodasLasTablas();
-crearTodasLasTuplas();
+//crearTodasLasTuplas();
 
 
 //llamarCursores(); Por quitar

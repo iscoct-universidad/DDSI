@@ -31,7 +31,7 @@ BEGIN
       LEAVE bucle;
     END IF;
 
-    SET listaGestor = CONCAT(listaGestor, NombreGestor, " con DNI: ", DNIGestor, "<\br>");
+    SET listaGestor = CONCAT(listaGestor, NombreGestor, " con DNI: ", DNIGestor, " <br\/> ");
   END LOOP;
 
   CLOSE cGestor;
