@@ -242,10 +242,9 @@ var server = http.createServer((req, res) => {
 
 			operaciones.consultarPertenece(params[1], function(consulta) {
 				var camposValores = consulta[0]['@listaEmpleados'];
-				// var arrayModificado = camposValores.replace('<br/>', '<br/>&')
-				// var arrayCadena = camposValores.split('&');
-				var arrayModificado = camposValores.replace('>', '>&')
+				var arrayModificado = camposValores.replace(/>/g, '>&')
 				var arrayCadena = arrayModificado.split('&');
+				arrayCadena.splice(-1,1);	// Quitamos el último elemento (el último <br>)
 
 				console.log("Consulta: ", consulta);
 				respuesta += "Los empleado pertenecientes al departamento 1 son:<br/><ul>";
