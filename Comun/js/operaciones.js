@@ -56,7 +56,7 @@ eliminarTupla("CampaniaPublicitaria", "CodEnt", "2");
 	uno de los campos introducidos
 */
 
-const insertarTupla = function(nombreTabla, campos, valores) {
+const insertarTupla = function(nombreTabla, campos, valores, callback) {
 	conectarse(function(err,con) {
 		if(err)
 			console.log("Error al intentar conectar con la base de datos en insertarTupla");
@@ -84,6 +84,9 @@ const insertarTupla = function(nombreTabla, campos, valores) {
 			}
 			else
 				console.log("Se insertó la tupla correctamente");
+				
+			if(callback != undefined)
+				callback(err, result);
 		});
 
 		con.end();

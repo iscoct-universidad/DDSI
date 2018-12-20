@@ -128,20 +128,40 @@ var server = http.createServer((req, res) => {
 		case 1004:
 			console.log(solicitud + "crear un informe de un producto competidor");
 
-			operaciones.crearInfProdComp(params[1], params[2], params[3], params[4], params[5]);
-			respuesta += "Operación realizada con éxito";
-
-			devolverRespuesta(res, respuesta);
+			operaciones.crearInfProdComp(params[1], params[2], params[3], params[4], params[5], (err, result) => {
+				if(err)
+					respuesta += "El id introducido de Producto no existe";
+				else
+					respuesta += "Se insertó la tupla con éxito";
+				
+				devolverRespuesta(res, respuesta);
+			});
 		break;
 		case 1005:
 			console.log(solicitud + " listar nombres de Producto y ProductoCompetidor");
 
-			for(let x in camposValores)
-				respuesta += "<li>" + x + ": " + camposValores[x] + "</li>";
+			operaciones.consultarNombres((consulta) => {
+				var camposValores = consulta[0]['@listaNombres'];
+				var arrayModificado = camposValores.replace(/>/g, '>&');
+				var arrayCadena = arrayModificado.split('&');
+				
+				arrayCadena.splice(-1, 1);
+				
+				console.log("Consulta: ", consulta);
+				console.log("Array modificado: ", arrayModificado);
+				console.log("Array cadena: ", arrayCadena);
+				
+				respuesta += "Listado de los nombres de los productos comparados<br/><ul>";
+				
+				arrayCadena.forEach((value, index, array) => {
+					respuesta += "<li>" + value + "</li>";
+				});
+				
+				respuesta += "</ul>";
 
-			respuesta += "</ul>";
-
-			devolverRespuesta(res, respuesta);
+				console.log("Respuesta: ", respuesta);
+				devolverRespuesta(res, respuesta);
+			});
 		break;
 		default:
 			console.log("Código de operación no válido");

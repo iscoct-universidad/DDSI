@@ -6,5 +6,5 @@ CREATE TABLE Producto (
   Especificaciones  VARCHAR(60),
   Piezas VARCHAR(50),
   Stock    INT,
-  Precio    INT
+  Precio   REAL
 );

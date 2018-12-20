@@ -126,7 +126,7 @@ var condiciones = ["Z"];
 modificarCampania(campos, valores, camposCondiciones, condiciones);
 */
 
-var crearInfProdComp = (nombre, precio, rendimiento, informe, idProducto) => {
+var crearInfProdComp = (nombre, precio, rendimiento, informe, idProducto, callback) => {
 	operacionesComunes.conectarse(function(err, con) {
 		if(err)
 			console.log("Hubo un error al intentar conectarse a la BD en crearInfProdComp");
@@ -144,7 +144,7 @@ var crearInfProdComp = (nombre, precio, rendimiento, informe, idProducto) => {
 			operacionesComunes.tomarMaximo(con, "CodComp", "Compara", (err, maximo) => {
 				if(err)
 					console.log("Hubo un error al consultar el máximo de CodComp en Compara");
-					
+				
 				let idNuevoComp = maximo + 1;
 				campos = ["CodProdComp", "CodProd", "CodComp", "Informe"];
 				
@@ -153,11 +153,49 @@ var crearInfProdComp = (nombre, precio, rendimiento, informe, idProducto) => {
 					
 				valores = [idNuevo, idProducto, idNuevoComp, informe];
 
-				operacionesComunes.insertarTupla("Compara", campos, valores);
+				operacionesComunes.insertarTupla("Compara", campos, valores, (err, result) => {
+					if(err) {
+						console.log("Hubo un error al crear compara");
+						operacionesComunes.eliminarTupla("ProductoCompetidor", "CodProdComp", idNuevo);
+					}
+					
+					if(callback != undefined)
+						callback(err, result);
+				});
+				
 				con.end();
 			});
 		});
 	});			
+}
+
+var consultarNombres = (callback) => {
+	operacionesComunes.conectarse((err, con) => {
+		if(err)
+			console.log("Hubo un error al conectarse con la BD en consultarNombres");
+		
+		let sql1 = "set @listaNombres = \"\"; call cursorFran(@listaNombres);";
+		let sql2 = "select @listaNombres;";
+		
+		con.query(sql1, (err, result) => {
+			if(err)
+				console.log("Hubo un error al llamar al cursor de marketing");
+			else
+				console.log("Cursor de marketing inicializado");
+				
+			con.query(sql2, (err, result) => {
+				if(err)
+					console.log("Hubo un error al hacer la consulta de la lista de nombres de productos");
+				else
+					console.log("Realizada la consulta del nombre de los productos");
+				
+				if(callback != undefined)
+					callback(result);
+					
+				con.end();
+			});
+		});
+	});
 }
 
 /*
@@ -171,3 +209,4 @@ module.exports.crearCampania = crearCampania;
 module.exports.eliminarCampania = eliminarCampania;
 module.exports.consultarCampania = consultarCampania;
 module.exports.crearInfProdComp = crearInfProdComp;
+module.exports.consultarNombres = consultarNombres;
