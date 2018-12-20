@@ -17,23 +17,23 @@ const contenidoTabla = (con, nombreTabla) => {
 				reject(respuesta);
 			} else {
 				respuesta += "<h2>" + nombreTabla + "</h2>";
-				respuesta += "<table><tr>";
+				respuesta += "<table class=\"table\"><thead class=\"thead-dark\"><tr>";
 				
 				for(let x in result[0])
-					respuesta += "<th>" + x + "</th>";
+					respuesta += "<th scope=\"col\">" + x + "</th>";
 				
-				respuesta += "</tr>";
+				respuesta += "</tr></thead><tbody>";
 				
 				for(let y of result) {
 					respuesta += "<tr>";
 					
 					for(let z in y)
-						respuesta += "<th>" + y[z] + "</th>";
+						respuesta += "<td>" + y[z] + "</td>";
 					
 					respuesta += "</tr>";
 				}
 				
-				respuesta += "</table>";
+				respuesta += "</tbody></table>";
 				
 				resolve(respuesta);
 			}
