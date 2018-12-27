@@ -3,6 +3,13 @@
 const mysql = require('mysql');
 const fs = require('fs');
 
+/*
+	Función para conectarse a la base de datos
+	
+	A la función callback se le pasa como argumentos el posible
+	error al conectarse y la conexión de la base de datos
+*/
+
 const conectarse = (callback) => {
 	var con = mysql.createConnection({
 		multipleStatements: true,

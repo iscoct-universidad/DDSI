@@ -1,60 +1,37 @@
-<html>
-	<head>
-		<meta charset="UTF-8"/>
-		<!-- Bootstrap, quitar para volver a puro HTML -->
-		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-		<!-- Fuente -->
-		<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
-		<link href="./estilo.css" rel="stylesheet"/>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	</head>
-	<body>
-		<div id="cabecera"></div>
-		<script src="lecturaCabecera.js"></script>
-		
-		<!-- Contenido de la página -->
-		<div class="p-3 text-white">
-			<p class="font-weight-bold text-center Merriweather h3">Crear empleado</p>
+<div id="cabecera"></div>
 
-			<h5>Introduzca los datos del empleado</h5>
-			<form action="http://localhost:8084/1000" method="get">
-				<div class="form-group">
-					<label for="nombre">Nombre</label>
-					<input class="form-control" id="nombre"
-								 placeholder="Paco" type="text" name="nombre"/><br/>
+<!-- Contenido de la página -->
+<div class="p-3 text-white">
+	<p class="font-weight-bold text-center Merriweather h3">Crear empleado</p>
 
-				  <label for="dni">DNI</label>
-			 		<input class="form-control" id="dni"
-			 					 placeholder="00000000A" type="text" name="dni"/><br/>
+	<h5>Introduzca los datos del empleado</h5>
+	<form action="http://localhost:8084/1000" method="get">
+		<div class="form-group">
+			<label for="nombre">Nombre</label>
+			<input class="form-control" id="nombre"
+						 placeholder="Paco" type="text" name="nombre"/><br/>
 
-				 <label for="direccion">Dirección</label>
-		 		 <input class="form-control" id="direccion"
-								placeholder="Calle Periodista Daniel Saucedo Aranda"
-								type="text" name="direccion"/><br/>
+		  <label for="dni">DNI</label>
+	 		<input class="form-control" id="dni"
+	 					 placeholder="00000000A" type="text" name="dni"/><br/>
 
-				 <label for="telefono">Teléfono</label>
-				 <input class="form-control" id="telefono"
-				 			  placeholder="111111111" type="text" name="telefono"/><br/>
+		 <label for="direccion">Dirección</label>
+ 		 <input class="form-control" id="direccion"
+						placeholder="Calle Periodista Daniel Saucedo Aranda"
+						type="text" name="direccion"/><br/>
 
-				 <label for="sueldo">Sueldo</label>
-				 <input class="form-control" id="sueldo"
-							 placeholder="1000" type="text" name="sueldo"/><br/>
+		 <label for="telefono">Teléfono</label>
+		 <input class="form-control" id="telefono"
+		 			  placeholder="111111111" type="text" name="telefono"/><br/>
 
-				 <label for="estado">Estado</label>
-				 <input class="form-control" id="nombre"
-				 			 placeholder="N" type="text" name="estado"/><br/>
-				</div>
-				<button type="submit" class="btn btn-primary" value="Enviar">Enviar</button>
-			</form>
-	</body>
-</html>
+		 <label for="sueldo">Sueldo</label>
+		 <input class="form-control" id="sueldo"
+					 placeholder="1000" type="text" name="sueldo"/><br/>
 
-<!--
-Nombre: 	 <input type="text" name="nombre"/><br/>
-DNI:			 <input type="text" name="dni"/><br/>
-Dirección: <input type="text" name="direccion"/><br/>
-Teléfono:	 <input type="text" name="telefono"/><br/>
-Sueldo:	 	 <input type="text" name="sueldo"/><br/>
-Estado:	   <input type="text" name="estado"/><br/>
-<input type="submit" value="Enviar"/>
--->
+		 <label for="estado">Estado</label>
+		 <input class="form-control" id="nombre"
+		 			 placeholder="N" type="text" name="estado"/><br/>
+		</div>
+		<button type="submit" class="btn btn-primary" value="Enviar">Enviar</button>
+	</form>
+</div>
