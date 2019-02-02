@@ -1,5 +1,6 @@
 # DDSI
 Proyecto de DDSI
+Para ver la documentación entera, acceda a hardware.docx
 
 ## Avisos
 * Datos de la base de datos
