@@ -39,7 +39,7 @@ Proyecto de DDSI
     > Podemos mirar Twitter Bootstrap, creo que era bastante sencillo de utilizar
 
 **Recursos Humanos**
-  * Modificar el mostrar por pantalla de DBMS :heave_check_mark:
+  * Modificar el mostrar por pantalla de DBMS :heavy_check_mark:
   * Creación de tablas e inserción de tuplas :heavy_check_mark:
   * Operaciones JS
     * Crear Empleado :heavy_check_mark:
