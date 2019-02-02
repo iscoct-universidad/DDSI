@@ -47,7 +47,7 @@ Proyecto de DDSI
     * Consultar Empleado :heavy_check_mark:
     * Eliminar Empleado :heavy_check_mark:
     * Crear Departamento :heavy_check_mark:
-    * Modificar Departamento __(Problema con la operación modificarTupla)__ :haevy_check_mark:
+    * Modificar Departamento __(Problema con la operación modificarTupla)__ :heavy_check_mark:
     * Consultar Departamento :heavy_check_mark:
     * Eliminar Departamento :heavy_check_mark:
     * Añadir empleado a departamento :heavy_check_mark:
