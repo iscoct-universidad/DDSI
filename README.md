@@ -39,18 +39,18 @@ Proyecto de DDSI
     > Podemos mirar Twitter Bootstrap, creo que era bastante sencillo de utilizar
 
 **Recursos Humanos**
-  * Modificar el mostrar por pantalla de DBMS
+  * Modificar el mostrar por pantalla de DBMS :heave_check_mark:
   * Creación de tablas e inserción de tuplas :heavy_check_mark:
   * Operaciones JS
     * Crear Empleado :heavy_check_mark:
-    * Modificar Empleado __(Problema con la operación modificarTupla)__
+    * Modificar Empleado __(Problema con la operación modificarTupla)__ :heavy_check_mark:
     * Consultar Empleado :heavy_check_mark:
     * Eliminar Empleado :heavy_check_mark:
     * Crear Departamento :heavy_check_mark:
-    * Modificar Departamento __(Problema con la operación modificarTupla)__
+    * Modificar Departamento __(Problema con la operación modificarTupla)__ :haevy_check_mark:
     * Consultar Departamento :heavy_check_mark:
     * Eliminar Departamento :heavy_check_mark:
     * Añadir empleado a departamento :heavy_check_mark:
-    * Eliminar empleado de departamento
-    * Listar empleados de un departamento (cursor)
-    * Disparador
+    * Eliminar empleado de departamento :heave_check_mark:
+    * Listar empleados de un departamento (cursor) :heavy_check_mark:
+    * Disparador :heavy_chech_mark:
